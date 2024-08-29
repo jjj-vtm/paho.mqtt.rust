@@ -161,6 +161,16 @@ impl TokenInner {
         })
     }
 
+    pub fn from_message_with_cb<FS>(msg: &Message, cb: FS,  cli: &AsyncClient) -> Arc<Self> 
+    where FS: Fn(&AsyncClient, u16) + 'static {
+        Arc::new(Self {
+            cli: Some(cli.clone()),
+            lock: Mutex::new(TokenData::from_message_id(msg.cmsg.msgid as i16)),
+            on_success: Some(Box::new(cb)),
+            ..Self::default()
+        })
+    }
+
     /// Creates a new, un-signaled Token with callbacks.
     pub fn from_client<FS, FF>(
         cli: &AsyncClient,
@@ -640,6 +650,15 @@ impl DeliveryToken {
     pub fn new(msg: Message) -> DeliveryToken {
         DeliveryToken {
             inner: TokenInner::from_message(&msg),
+            msg,
+        }
+    }
+
+    /// Creates a new, un-signaled delivery Token and installs a user provided callback if the message was successfully published
+    pub fn new_cb<FS>(msg: Message, cb: FS, cli: &AsyncClient) -> DeliveryToken 
+    where FS: Fn(&AsyncClient, u16) + 'static  {
+        DeliveryToken {
+            inner: TokenInner::from_message_with_cb(&msg, cb, cli),
             msg,
         }
     }

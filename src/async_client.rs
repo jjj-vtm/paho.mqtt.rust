@@ -752,6 +752,37 @@ impl AsyncClient {
         }
     }
 
+    /// Publishes a message and installs a user provided callback on the token
+    pub fn try_publish_cb<FS>(&self, msg: Message, cb: FS) -> Result<DeliveryToken>
+    where
+        FS: Fn(&AsyncClient, u16) + 'static,
+    {
+        debug!("Publish: {:?}", msg);
+
+        let ver = self.mqtt_version();
+        let tok = DeliveryToken::new_cb(msg, cb, &self);
+        let mut rsp_opts = ResponseOptions::new(ver, tok.clone());
+        let msg = tok.message();
+
+        let rc = unsafe {
+            ffi::MQTTAsync_sendMessage(
+                self.inner.handle,
+                msg.topic().as_ptr() as *const c_char,
+                &msg.cmsg,
+                &mut rsp_opts.copts,
+            )
+        };
+
+        if rc != 0 {
+            mem::drop(unsafe { Token::from_raw(rsp_opts.copts.context) });
+            let msg: Message = tok.into();
+            return Err(Error::Publish(rc, msg));
+        }
+
+        tok.set_msgid(rsp_opts.copts.token as i16);
+        Ok(tok)
+    }
+
     /// Attempts to publish a message to the MQTT broker, but returns an
     /// error immediately if there's a problem creating or queuing the
     /// message.
@@ -791,6 +822,21 @@ impl AsyncClient {
     ///
     pub fn publish(&self, msg: Message) -> DeliveryToken {
         match self.try_publish(msg) {
+            Ok(tok) => tok,
+            Err(Error::Publish(rc, msg)) => DeliveryToken::from_error(msg, rc),
+            _ => panic!("Unknown publish error"),
+        }
+    }
+
+        /// Publishes a message to the MQTT broker with a callback
+    ///
+    /// Returns a Delivery Token to track the progress of the operation.
+    ///
+    pub fn publish_cb<FS>(&self, msg: Message, cb: FS) -> DeliveryToken
+    where
+        FS: Fn(&AsyncClient, u16) + 'static,
+    {
+        match self.try_publish_cb(msg, cb) {
             Ok(tok) => tok,
             Err(Error::Publish(rc, msg)) => DeliveryToken::from_error(msg, rc),
             _ => panic!("Unknown publish error"),
