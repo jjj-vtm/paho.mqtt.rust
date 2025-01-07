@@ -37,7 +37,7 @@ extern crate lazy_static;
 
 use paho_mqtt as mqtt;
 use serde_json::json;
-use std::{collections::HashMap, process, thread, time::Duration};
+use std::{collections::HashMap, process, thread, time::{Duration, Instant}};
 
 // The default QoS
 const QOS: i32 = 1;
@@ -75,11 +75,15 @@ lazy_static! {
 // with a few second pause between each attempt. A real system might keep
 // trying indefinitely, with a backoff, or something like that.
 
-fn try_reconnect(cli: &mqtt::AsyncClient) -> bool {
+fn try_reconnect(cli: &mqtt::AsyncClient, opts: mqtt::ConnectOptions) -> bool {
     println!("Connection lost. Waiting to retry connection");
-    for _ in 0..24 {
-        thread::sleep(Duration::from_millis(2500));
-        if cli.reconnect().wait().is_ok() {
+
+    const PAUSE: Duration = Duration::from_millis(2500);
+    let start = Instant::now();
+
+    while start.elapsed() < Duration::from_secs(60) - PAUSE {
+        thread::sleep(PAUSE);
+        if cli.connect(opts.clone()).wait().is_ok() {
             println!("Successfully reconnected");
             return true;
         }
@@ -196,18 +200,16 @@ fn main() -> mqtt::Result<()> {
     // but it's still a good habit to start consuming first.
     let rx = cli.start_consuming();
 
-    // Connect with default options for MQTT v5, and a persistent session
-    // (no clean start). For a persistent v5 session, we must set the Session
-    // Expiry Interval on the server. Here we set that requests will persist
-    // for 60sec if the service disconnects or restarts.
-    let conn_opts = mqtt::ConnectOptionsBuilder::new_v5()
-        .clean_start(false)
+    // Connect with default options for MQTT v5, and a short persistent
+    // session of 60 sec. But we set a clean start
+    let mut conn_opts = mqtt::ConnectOptionsBuilder::new_v5()
+        .clean_start(true)
         .properties(mqtt::properties![mqtt::PropertyCode::SessionExpiryInterval => 60])
         .finalize();
 
     // Connect and wait for it to complete or fail
 
-    let rsp = cli.connect(conn_opts).wait().unwrap_or_else(|err| {
+    let rsp = cli.connect(conn_opts.clone()).wait().unwrap_or_else(|err| {
         eprintln!("Unable to connect: {:?}", err);
         process::exit(1);
     });
@@ -226,6 +228,10 @@ fn main() -> mqtt::Result<()> {
         }
     }
 
+    // For any reconnects we maintain the session by turning off
+    // the clean start option.
+    conn_opts.set_clean_start(false);
+
     println!("Processing requests...");
     for msg in rx.iter() {
         if let Some(msg) = msg {
@@ -233,7 +239,7 @@ fn main() -> mqtt::Result<()> {
                 eprintln!("Error: {}", err);
             }
         }
-        else if cli.is_connected() || !try_reconnect(&cli) {
+        else if cli.is_connected() || !try_reconnect(&cli, conn_opts.clone()) {
             break;
         }
     }

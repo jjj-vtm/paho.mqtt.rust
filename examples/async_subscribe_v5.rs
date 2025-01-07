@@ -71,6 +71,12 @@ fn main() {
         process::exit(1);
     });
 
+    // Notification callback(s)
+
+    cli.set_disconnected_callback(|_, _props, reason| {
+        println!("Server disconnected with reason: {}", reason);
+    });
+
     if let Err(err) = block_on(async {
         // Get message stream before connecting.
         let mut strm = cli.get_stream(25);

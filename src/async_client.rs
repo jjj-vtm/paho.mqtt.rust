@@ -3,7 +3,7 @@
 // This file is part of the Eclipse Paho MQTT Rust Client library.
 
 /*******************************************************************************
- * Copyright (c) 2017-2023 Frank Pagliughi <fpagliughi@mindspring.com>
+ * Copyright (c) 2017-2024 Frank Pagliughi <fpagliughi@mindspring.com>
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v2.0
@@ -430,6 +430,11 @@ impl AsyncClient {
     /// deadlock the callback thread when accessing the user data.
     pub fn user_data(&self) -> Option<&UserData> {
         self.inner.user_data.as_ref()
+    }
+
+    /// Gets a copy of the options used in the last connection attempt.
+    pub fn connect_options(&self) -> ConnectOptions {
+        self.inner.opts.lock().unwrap().clone()
     }
 
     /// Connects to an MQTT broker using the specified connect options.
