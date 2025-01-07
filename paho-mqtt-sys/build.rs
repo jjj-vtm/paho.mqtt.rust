@@ -275,8 +275,11 @@ mod build {
             .define("PAHO_BUILD_STATIC", "on")
             .define("PAHO_ENABLE_TESTING", "off")
             .define("PAHO_HIGH_PERFORMANCE", "on")
-            .define("PAHO_WITH_SSL", ssl)
-            .define("PAHO_WITH_UNIX_SOCKETS", "on");
+            .define("PAHO_WITH_SSL", ssl);
+
+        if !is_windows() {
+            cmk_cfg.define("PAHO_WITH_UNIX_SOCKETS", "on");
+        }
 
         if is_msvc() {
             cmk_cfg.cflag("/DWIN32");
