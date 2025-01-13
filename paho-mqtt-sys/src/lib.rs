@@ -23,16 +23,14 @@
 #![allow(non_upper_case_globals)]
 #![allow(non_camel_case_types)]
 #![allow(non_snake_case)]
-
 // Weirdness in the bindgen bindings
 #![allow(deref_nullptr)]
-
 // Temporary
 #![allow(dead_code)]
 
-use std::ptr;
 use std::fmt;
 use std::os::raw::{c_char, c_int};
+use std::ptr;
 
 include!(concat!(env!("OUT_DIR"), "/bindings.rs"));
 
@@ -52,7 +50,12 @@ impl Default for MQTTAsync_createOptions {
     /// Creates a client that can connect using MQTT v3.x or v5
     fn default() -> Self {
         Self {
-            struct_id: [ b'M' as c_char, b'Q' as c_char, b'C' as c_char, b'O' as c_char],
+            struct_id: [
+                b'M' as c_char,
+                b'Q' as c_char,
+                b'C' as c_char,
+                b'O' as c_char,
+            ],
             struct_version: CREATE_OPTIONS_STRUCT_VERSION,
             sendWhileDisconnected: 0,
             maxBufferedMessages: 100,
@@ -98,7 +101,12 @@ pub const CONNECT_OPTIONS_STRUCT_VERSION: i32 = 8;
 impl Default for MQTTAsync_connectOptions {
     fn default() -> Self {
         Self {
-            struct_id: [ b'M' as c_char, b'Q' as c_char, b'T' as c_char, b'C' as c_char],
+            struct_id: [
+                b'M' as c_char,
+                b'Q' as c_char,
+                b'T' as c_char,
+                b'C' as c_char,
+            ],
             struct_version: CONNECT_OPTIONS_STRUCT_VERSION,
             keepAliveInterval: 60,
             cleansession: 1,
@@ -181,7 +189,12 @@ pub const WILL_OPTIONS_STRUCT_VERSION: i32 = 1;
 impl Default for MQTTAsync_willOptions {
     fn default() -> MQTTAsync_willOptions {
         MQTTAsync_willOptions {
-            struct_id: [ b'M' as c_char, b'Q' as c_char, b'T' as c_char, b'W' as c_char ],
+            struct_id: [
+                b'M' as c_char,
+                b'Q' as c_char,
+                b'T' as c_char,
+                b'W' as c_char,
+            ],
             struct_version: WILL_OPTIONS_STRUCT_VERSION,
             topicName: ptr::null(),
             message: ptr::null(),
@@ -190,7 +203,7 @@ impl Default for MQTTAsync_willOptions {
             payload: MQTTAsync_willOptions__bindgen_ty_1 {
                 len: 0,
                 data: ptr::null(),
-            }
+            },
         }
     }
 }
@@ -201,7 +214,12 @@ pub const SSL_OPTIONS_STRUCT_VERSION: i32 = 5;
 impl Default for MQTTAsync_SSLOptions {
     fn default() -> MQTTAsync_SSLOptions {
         MQTTAsync_SSLOptions {
-            struct_id: [ b'M' as c_char, b'Q' as c_char, b'T' as c_char, b'S' as c_char ],
+            struct_id: [
+                b'M' as c_char,
+                b'Q' as c_char,
+                b'T' as c_char,
+                b'S' as c_char,
+            ],
             struct_version: SSL_OPTIONS_STRUCT_VERSION,
             trustStore: ptr::null(),
             keyStore: ptr::null(),
@@ -230,7 +248,12 @@ pub const SUBSCRIBE_OPTIONS_STRUCT_VERSION: i32 = 0;
 impl Default for MQTTSubscribe_options {
     fn default() -> MQTTSubscribe_options {
         MQTTSubscribe_options {
-            struct_id: [ b'M' as c_char, b'Q' as c_char, b'S' as c_char, b'O' as c_char ],
+            struct_id: [
+                b'M' as c_char,
+                b'Q' as c_char,
+                b'S' as c_char,
+                b'O' as c_char,
+            ],
             struct_version: SUBSCRIBE_OPTIONS_STRUCT_VERSION,
             noLocal: 0,
             retainAsPublished: 0,
@@ -245,7 +268,12 @@ pub const RESPONSE_OPTIONS_STRUCT_VERSION: i32 = 1;
 impl Default for MQTTAsync_responseOptions {
     fn default() -> MQTTAsync_responseOptions {
         MQTTAsync_responseOptions {
-            struct_id: [ b'M' as c_char, b'Q' as c_char, b'T' as c_char, b'R' as c_char ],
+            struct_id: [
+                b'M' as c_char,
+                b'Q' as c_char,
+                b'T' as c_char,
+                b'R' as c_char,
+            ],
             struct_version: RESPONSE_OPTIONS_STRUCT_VERSION,
             onSuccess: None,
             onFailure: None,
@@ -284,7 +312,10 @@ impl Default for MQTTProperties {
 
 impl Default for MQTTLenString {
     fn default() -> MQTTLenString {
-        MQTTLenString { len: 0, data: ptr::null_mut(), }
+        MQTTLenString {
+            len: 0,
+            data: ptr::null_mut(),
+        }
     }
 }
 
@@ -297,7 +328,12 @@ pub const MESSAGE_STRUCT_VERSION: i32 = 1;
 impl Default for MQTTAsync_message {
     fn default() -> MQTTAsync_message {
         MQTTAsync_message {
-            struct_id: [ b'M' as c_char, b'Q' as c_char, b'T' as c_char, b'M' as c_char ],
+            struct_id: [
+                b'M' as c_char,
+                b'Q' as c_char,
+                b'T' as c_char,
+                b'M' as c_char,
+            ],
             struct_version: MESSAGE_STRUCT_VERSION,
             payloadlen: 0,
             payload: ptr::null_mut(),
@@ -319,7 +355,12 @@ pub const DISCONNECT_OPTIONS_STRUCT_VERSION: i32 = 1;
 impl Default for MQTTAsync_disconnectOptions {
     fn default() -> MQTTAsync_disconnectOptions {
         MQTTAsync_disconnectOptions {
-            struct_id: [ b'M' as c_char, b'Q' as c_char, b'T' as c_char, b'D' as c_char],
+            struct_id: [
+                b'M' as c_char,
+                b'Q' as c_char,
+                b'T' as c_char,
+                b'D' as c_char,
+            ],
             struct_version: DISCONNECT_OPTIONS_STRUCT_VERSION,
             timeout: 0,
             onSuccess: None,
@@ -363,7 +404,10 @@ impl MQTTAsync_nameValue {
 
 impl Default for MQTTAsync_nameValue {
     fn default() -> Self {
-        Self { name: ptr::null(), value: ptr::null() }
+        Self {
+            name: ptr::null(),
+            value: ptr::null(),
+        }
     }
 }
 
@@ -371,6 +415,4 @@ impl Default for MQTTAsync_nameValue {
 // Unit Tests
 
 #[cfg(test)]
-mod tests {
-}
-
+mod tests {}

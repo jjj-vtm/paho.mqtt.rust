@@ -58,7 +58,7 @@ use std::{
 // TODO: Assuming the proper installed version of the library is problematic.
 //      We should check that the version is correct, if possible.
 
-const PAHO_MQTT_C_VERSION: &str = "1.3.13";
+const PAHO_MQTT_C_VERSION: &str = "1.3.14";
 
 fn main() {
     build::main();
@@ -87,11 +87,21 @@ fn pointer_width() -> u32 {
 fn link_lib_base() -> &'static str {
     if cfg!(feature = "ssl") {
         println!("debug:link Using SSL library");
-        if is_windows() { "paho-mqtt3as-static" } else { "paho-mqtt3as" }
+        if is_windows() {
+            "paho-mqtt3as-static"
+        }
+        else {
+            "paho-mqtt3as"
+        }
     }
     else {
         println!("debug:link Using non-SSL library");
-        if is_windows() { "paho-mqtt3a-static" } else { "paho-mqtt3a" }
+        if is_windows() {
+            "paho-mqtt3a-static"
+        }
+        else {
+            "paho-mqtt3a"
+        }
     }
 }
 
@@ -99,11 +109,12 @@ fn link_lib_base() -> &'static str {
 // directories under the specified install path.
 // On success returns the path and base library name (i.e. the search path
 // and link library name).
-fn find_link_lib<P>(install_path: P) -> Option<(PathBuf,&'static str)>
-    where P: AsRef<Path>
+fn find_link_lib<P>(install_path: P) -> Option<(PathBuf, &'static str)>
+where
+    P: AsRef<Path>,
 {
     let install_path = install_path.as_ref();
-    let lib_dirs = &[ "lib", "lib64" ];
+    let lib_dirs = &["lib", "lib64"];
 
     let lib_base = link_lib_base();
 
@@ -144,19 +155,24 @@ mod bindings {
         let ptr_wd = pointer_width();
         println!("debug:Target Pointer Width: {}", ptr_wd);
 
-        let mut bindings = format!("bindings/bindings_paho_mqtt_c_{}-{}.rs",
-                                   PAHO_MQTT_C_VERSION, target);
+        let mut bindings = format!(
+            "bindings/bindings_paho_mqtt_c_{}-{}.rs",
+            PAHO_MQTT_C_VERSION, target
+        );
 
         if !Path::new(&bindings).exists() {
-            println!("No bindings exist for: {}. Using {}-bit default.",
-                     bindings, ptr_wd);
-            bindings = format!("bindings/bindings_paho_mqtt_c_{}-default-{}.rs",
-                    PAHO_MQTT_C_VERSION, ptr_wd)
+            println!(
+                "No bindings exist for: {}. Using {}-bit default.",
+                bindings, ptr_wd
+            );
+            bindings = format!(
+                "bindings/bindings_paho_mqtt_c_{}-default-{}.rs",
+                PAHO_MQTT_C_VERSION, ptr_wd
+            )
         }
 
         println!("debug:Using bindings from: {}", bindings);
-        fs::copy(&bindings, out_path)
-            .expect("Could not copy bindings to output directory");
+        fs::copy(&bindings, out_path).expect("Could not copy bindings to output directory");
     }
 }
 
@@ -167,7 +183,7 @@ mod bindings {
 
     use super::*;
     use std::{
-        fs, env,
+        env, fs,
         path::{Path, PathBuf},
     };
 
@@ -188,7 +204,8 @@ mod bindings {
             .trust_clang_mangling(false)
             // The input header we would like to generate
             // bindings for.
-            .header("wrapper.h").clang_arg(inc_search)
+            .header("wrapper.h")
+            .clang_arg(inc_search)
             // Finish the builder and generate the bindings.
             .generate()
             // Unwrap the Result and panic on failure.
@@ -198,7 +215,8 @@ mod bindings {
         let out_dir = PathBuf::from(env::var("OUT_DIR").unwrap());
         let out_path = out_dir.join("bindings.rs");
 
-        bindings.write_to_file(out_path.clone())
+        bindings
+            .write_to_file(out_path.clone())
             .expect("Couldn't write bindings!");
 
         // Save a copy of the bindings file into the bindings/ dir
@@ -207,8 +225,10 @@ mod bindings {
         let target = env::var("TARGET").unwrap();
         println!("debug:Target: {}", target);
 
-        let bindings = format!("bindings/bindings_paho_mqtt_c_{}-{}.rs",
-                               PAHO_MQTT_C_VERSION, target);
+        let bindings = format!(
+            "bindings/bindings_paho_mqtt_c_{}-{}.rs",
+            PAHO_MQTT_C_VERSION, target
+        );
 
         if !Path::new(&bindings).exists() {
             if let Err(err) = fs::copy(out_path, &bindings) {
@@ -231,7 +251,7 @@ mod build {
 
     use super::*;
     use std::{
-//        path::Path,
+        //        path::Path,
         process,
         process::Command,
     };
@@ -262,8 +282,8 @@ mod build {
         // Mske sure that the Git submodule is checked out
         if !Path::new("paho.mqtt.c/.git").exists() {
             let _ = Command::new("git")
-                        .args(["submodule", "update", "--init"])
-                        .status();
+                .args(["submodule", "update", "--init"])
+                .status();
         }
 
         // Configure cmake to build the Paho C lib
@@ -298,10 +318,14 @@ mod build {
             _ => {
                 println!("Error building Paho C library.");
                 process::exit(103);
-            },
+            }
         };
 
-        println!("debug:Using Paho C library at: {} [{}]", lib_path.display(), link_lib);
+        println!(
+            "debug:Using Paho C library at: {} [{}]",
+            lib_path.display(),
+            link_lib
+        );
 
         // Get bundled bindings or regenerate
         let inc_dir = cmk_install_path.join("include");
@@ -316,13 +340,10 @@ mod build {
             }
 
             // See if static SSL linkage was requested
-            let linkage = match env::var("OPENSSL_STATIC")
-                .as_ref()
-                .map(|s| s.as_str())
-            {
+            let linkage = match env::var("OPENSSL_STATIC").as_ref().map(|s| s.as_str()) {
                 Ok("0") => "",
                 Ok(_) => "=static",
-                Err(_) => ""
+                Err(_) => "",
             };
 
             let prefix = if is_msvc() { "lib" } else { "" };
@@ -346,17 +367,13 @@ mod build {
     }
 }
 
-
 // Here we're building with an existing Paho C library.
 // This can be a library installed on the system or the location might be
 // specified with some environment variables, like: "PAHO_MQTT_C_DIR"
 #[cfg(not(feature = "bundled"))]
 mod build {
     use super::*;
-    use std::{
-        env,
-        path::Path,
-    };
+    use std::{env, path::Path};
 
     // Set the library path, and return the location of the header,
     // if found.
