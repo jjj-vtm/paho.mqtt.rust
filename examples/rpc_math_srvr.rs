@@ -37,7 +37,11 @@ extern crate lazy_static;
 
 use paho_mqtt as mqtt;
 use serde_json::json;
-use std::{collections::HashMap, process, thread, time::{Duration, Instant}};
+use std::{
+    collections::HashMap,
+    process, thread,
+    time::{Duration, Instant},
+};
 
 // The default QoS
 const QOS: i32 = 1;

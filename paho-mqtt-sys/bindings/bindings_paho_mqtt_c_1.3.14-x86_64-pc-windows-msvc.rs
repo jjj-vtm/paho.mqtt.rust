@@ -98,31 +98,31 @@ pub const MQTT_SSL_VERSION_TLS_1_1: u32 = 2;
 pub const MQTT_SSL_VERSION_TLS_1_2: u32 = 3;
 pub const MQTTASYNC_TRUE: u32 = 1;
 pub type va_list = *mut ::std::os::raw::c_char;
-unsafe extern "C" {
+extern "C" {
     pub fn __va_start(arg1: *mut *mut ::std::os::raw::c_char, ...);
 }
 pub type __vcrt_bool = bool;
 pub type wchar_t = ::std::os::raw::c_ushort;
-unsafe extern "C" {
+extern "C" {
     pub fn __security_init_cookie();
 }
-unsafe extern "C" {
+extern "C" {
     pub fn __security_check_cookie(_StackCookie: usize);
 }
-unsafe extern "C" {
+extern "C" {
     pub fn __report_gsfailure(_StackCookie: usize) -> !;
 }
-unsafe extern "C" {
+extern "C" {
     pub static mut __security_cookie: usize;
 }
 pub type __crt_bool = bool;
-unsafe extern "C" {
+extern "C" {
     pub fn _invalid_parameter_noinfo();
 }
-unsafe extern "C" {
+extern "C" {
     pub fn _invalid_parameter_noinfo_noreturn() -> !;
 }
-unsafe extern "C" {
+extern "C" {
     pub fn _invoke_watson(
         _Expression: *const wchar_t,
         _FunctionName: *const wchar_t,
@@ -143,35 +143,69 @@ pub struct __crt_locale_data_public {
     pub _locale_mb_cur_max: ::std::os::raw::c_int,
     pub _locale_lc_codepage: ::std::os::raw::c_uint,
 }
-#[allow(clippy::unnecessary_operation, clippy::identity_op)]
-const _: () = {
-    ["Size of __crt_locale_data_public"]
-        [::std::mem::size_of::<__crt_locale_data_public>() - 16usize];
-    ["Alignment of __crt_locale_data_public"]
-        [::std::mem::align_of::<__crt_locale_data_public>() - 8usize];
-    ["Offset of field: __crt_locale_data_public::_locale_pctype"]
-        [::std::mem::offset_of!(__crt_locale_data_public, _locale_pctype) - 0usize];
-    ["Offset of field: __crt_locale_data_public::_locale_mb_cur_max"]
-        [::std::mem::offset_of!(__crt_locale_data_public, _locale_mb_cur_max) - 8usize];
-    ["Offset of field: __crt_locale_data_public::_locale_lc_codepage"]
-        [::std::mem::offset_of!(__crt_locale_data_public, _locale_lc_codepage) - 12usize];
-};
+#[test]
+fn bindgen_test_layout___crt_locale_data_public() {
+    const UNINIT: ::std::mem::MaybeUninit<__crt_locale_data_public> =
+        ::std::mem::MaybeUninit::uninit();
+    let ptr = UNINIT.as_ptr();
+    assert_eq!(
+        ::std::mem::size_of::<__crt_locale_data_public>(),
+        16usize,
+        "Size of __crt_locale_data_public"
+    );
+    assert_eq!(
+        ::std::mem::align_of::<__crt_locale_data_public>(),
+        8usize,
+        "Alignment of __crt_locale_data_public"
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr)._locale_pctype) as usize - ptr as usize },
+        0usize,
+        "Offset of field: __crt_locale_data_public::_locale_pctype"
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr)._locale_mb_cur_max) as usize - ptr as usize },
+        8usize,
+        "Offset of field: __crt_locale_data_public::_locale_mb_cur_max"
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr)._locale_lc_codepage) as usize - ptr as usize },
+        12usize,
+        "Offset of field: __crt_locale_data_public::_locale_lc_codepage"
+    );
+}
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
 pub struct __crt_locale_pointers {
     pub locinfo: *mut __crt_locale_data,
     pub mbcinfo: *mut __crt_multibyte_data,
 }
-#[allow(clippy::unnecessary_operation, clippy::identity_op)]
-const _: () = {
-    ["Size of __crt_locale_pointers"][::std::mem::size_of::<__crt_locale_pointers>() - 16usize];
-    ["Alignment of __crt_locale_pointers"]
-        [::std::mem::align_of::<__crt_locale_pointers>() - 8usize];
-    ["Offset of field: __crt_locale_pointers::locinfo"]
-        [::std::mem::offset_of!(__crt_locale_pointers, locinfo) - 0usize];
-    ["Offset of field: __crt_locale_pointers::mbcinfo"]
-        [::std::mem::offset_of!(__crt_locale_pointers, mbcinfo) - 8usize];
-};
+#[test]
+fn bindgen_test_layout___crt_locale_pointers() {
+    const UNINIT: ::std::mem::MaybeUninit<__crt_locale_pointers> =
+        ::std::mem::MaybeUninit::uninit();
+    let ptr = UNINIT.as_ptr();
+    assert_eq!(
+        ::std::mem::size_of::<__crt_locale_pointers>(),
+        16usize,
+        "Size of __crt_locale_pointers"
+    );
+    assert_eq!(
+        ::std::mem::align_of::<__crt_locale_pointers>(),
+        8usize,
+        "Alignment of __crt_locale_pointers"
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).locinfo) as usize - ptr as usize },
+        0usize,
+        "Offset of field: __crt_locale_pointers::locinfo"
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).mbcinfo) as usize - ptr as usize },
+        8usize,
+        "Offset of field: __crt_locale_pointers::mbcinfo"
+    );
+}
 pub type _locale_t = *mut __crt_locale_pointers;
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
@@ -180,14 +214,36 @@ pub struct _Mbstatet {
     pub _Byte: ::std::os::raw::c_ushort,
     pub _State: ::std::os::raw::c_ushort,
 }
-#[allow(clippy::unnecessary_operation, clippy::identity_op)]
-const _: () = {
-    ["Size of _Mbstatet"][::std::mem::size_of::<_Mbstatet>() - 8usize];
-    ["Alignment of _Mbstatet"][::std::mem::align_of::<_Mbstatet>() - 4usize];
-    ["Offset of field: _Mbstatet::_Wchar"][::std::mem::offset_of!(_Mbstatet, _Wchar) - 0usize];
-    ["Offset of field: _Mbstatet::_Byte"][::std::mem::offset_of!(_Mbstatet, _Byte) - 4usize];
-    ["Offset of field: _Mbstatet::_State"][::std::mem::offset_of!(_Mbstatet, _State) - 6usize];
-};
+#[test]
+fn bindgen_test_layout__Mbstatet() {
+    const UNINIT: ::std::mem::MaybeUninit<_Mbstatet> = ::std::mem::MaybeUninit::uninit();
+    let ptr = UNINIT.as_ptr();
+    assert_eq!(
+        ::std::mem::size_of::<_Mbstatet>(),
+        8usize,
+        "Size of _Mbstatet"
+    );
+    assert_eq!(
+        ::std::mem::align_of::<_Mbstatet>(),
+        4usize,
+        "Alignment of _Mbstatet"
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr)._Wchar) as usize - ptr as usize },
+        0usize,
+        "Offset of field: _Mbstatet::_Wchar"
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr)._Byte) as usize - ptr as usize },
+        4usize,
+        "Offset of field: _Mbstatet::_Byte"
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr)._State) as usize - ptr as usize },
+        6usize,
+        "Offset of field: _Mbstatet::_State"
+    );
+}
 pub type mbstate_t = _Mbstatet;
 pub type time_t = __time64_t;
 pub type rsize_t = usize;
@@ -196,81 +252,90 @@ pub type rsize_t = usize;
 pub struct _iobuf {
     pub _Placeholder: *mut ::std::os::raw::c_void,
 }
-#[allow(clippy::unnecessary_operation, clippy::identity_op)]
-const _: () = {
-    ["Size of _iobuf"][::std::mem::size_of::<_iobuf>() - 8usize];
-    ["Alignment of _iobuf"][::std::mem::align_of::<_iobuf>() - 8usize];
-    ["Offset of field: _iobuf::_Placeholder"]
-        [::std::mem::offset_of!(_iobuf, _Placeholder) - 0usize];
-};
+#[test]
+fn bindgen_test_layout__iobuf() {
+    const UNINIT: ::std::mem::MaybeUninit<_iobuf> = ::std::mem::MaybeUninit::uninit();
+    let ptr = UNINIT.as_ptr();
+    assert_eq!(::std::mem::size_of::<_iobuf>(), 8usize, "Size of _iobuf");
+    assert_eq!(
+        ::std::mem::align_of::<_iobuf>(),
+        8usize,
+        "Alignment of _iobuf"
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr)._Placeholder) as usize - ptr as usize },
+        0usize,
+        "Offset of field: _iobuf::_Placeholder"
+    );
+}
 pub type FILE = _iobuf;
-unsafe extern "C" {
+extern "C" {
     pub fn __acrt_iob_func(_Ix: ::std::os::raw::c_uint) -> *mut FILE;
 }
-unsafe extern "C" {
+extern "C" {
     pub fn fgetwc(_Stream: *mut FILE) -> wint_t;
 }
-unsafe extern "C" {
+extern "C" {
     pub fn _fgetwchar() -> wint_t;
 }
-unsafe extern "C" {
+extern "C" {
     pub fn fputwc(_Character: wchar_t, _Stream: *mut FILE) -> wint_t;
 }
-unsafe extern "C" {
+extern "C" {
     pub fn _fputwchar(_Character: wchar_t) -> wint_t;
 }
-unsafe extern "C" {
+extern "C" {
     pub fn getwc(_Stream: *mut FILE) -> wint_t;
 }
-unsafe extern "C" {
+extern "C" {
     pub fn getwchar() -> wint_t;
 }
-unsafe extern "C" {
+extern "C" {
     pub fn fgetws(
         _Buffer: *mut wchar_t,
         _BufferCount: ::std::os::raw::c_int,
         _Stream: *mut FILE,
     ) -> *mut wchar_t;
 }
-unsafe extern "C" {
+extern "C" {
     pub fn fputws(_Buffer: *const wchar_t, _Stream: *mut FILE) -> ::std::os::raw::c_int;
 }
-unsafe extern "C" {
+extern "C" {
     pub fn _getws_s(_Buffer: *mut wchar_t, _BufferCount: usize) -> *mut wchar_t;
 }
-unsafe extern "C" {
+extern "C" {
     pub fn putwc(_Character: wchar_t, _Stream: *mut FILE) -> wint_t;
 }
-unsafe extern "C" {
+extern "C" {
     pub fn putwchar(_Character: wchar_t) -> wint_t;
 }
-unsafe extern "C" {
+extern "C" {
     pub fn _putws(_Buffer: *const wchar_t) -> ::std::os::raw::c_int;
 }
-unsafe extern "C" {
+extern "C" {
     pub fn ungetwc(_Character: wint_t, _Stream: *mut FILE) -> wint_t;
 }
-unsafe extern "C" {
+extern "C" {
     pub fn _wfdopen(_FileHandle: ::std::os::raw::c_int, _Mode: *const wchar_t) -> *mut FILE;
 }
-unsafe extern "C" {
+extern "C" {
     pub fn _wfopen(_FileName: *const wchar_t, _Mode: *const wchar_t) -> *mut FILE;
 }
-unsafe extern "C" {
+extern "C" {
     pub fn _wfopen_s(
         _Stream: *mut *mut FILE,
         _FileName: *const wchar_t,
         _Mode: *const wchar_t,
     ) -> errno_t;
 }
-unsafe extern "C" {
+extern "C" {
     pub fn _wfreopen(
         _FileName: *const wchar_t,
         _Mode: *const wchar_t,
         _OldStream: *mut FILE,
     ) -> *mut FILE;
 }
-unsafe extern "C" {
+extern "C" {
     pub fn _wfreopen_s(
         _Stream: *mut *mut FILE,
         _FileName: *const wchar_t,
@@ -278,47 +343,47 @@ unsafe extern "C" {
         _OldStream: *mut FILE,
     ) -> errno_t;
 }
-unsafe extern "C" {
+extern "C" {
     pub fn _wfsopen(
         _FileName: *const wchar_t,
         _Mode: *const wchar_t,
         _ShFlag: ::std::os::raw::c_int,
     ) -> *mut FILE;
 }
-unsafe extern "C" {
+extern "C" {
     pub fn _wperror(_ErrorMessage: *const wchar_t);
 }
-unsafe extern "C" {
+extern "C" {
     pub fn _wpopen(_Command: *const wchar_t, _Mode: *const wchar_t) -> *mut FILE;
 }
-unsafe extern "C" {
+extern "C" {
     pub fn _wremove(_FileName: *const wchar_t) -> ::std::os::raw::c_int;
 }
-unsafe extern "C" {
+extern "C" {
     pub fn _wtempnam(_Directory: *const wchar_t, _FilePrefix: *const wchar_t) -> *mut wchar_t;
 }
-unsafe extern "C" {
+extern "C" {
     pub fn _wtmpnam_s(_Buffer: *mut wchar_t, _BufferCount: usize) -> errno_t;
 }
-unsafe extern "C" {
+extern "C" {
     pub fn _wtmpnam(_Buffer: *mut wchar_t) -> *mut wchar_t;
 }
-unsafe extern "C" {
+extern "C" {
     pub fn _fgetwc_nolock(_Stream: *mut FILE) -> wint_t;
 }
-unsafe extern "C" {
+extern "C" {
     pub fn _fputwc_nolock(_Character: wchar_t, _Stream: *mut FILE) -> wint_t;
 }
-unsafe extern "C" {
+extern "C" {
     pub fn _getwc_nolock(_Stream: *mut FILE) -> wint_t;
 }
-unsafe extern "C" {
+extern "C" {
     pub fn _putwc_nolock(_Character: wchar_t, _Stream: *mut FILE) -> wint_t;
 }
-unsafe extern "C" {
+extern "C" {
     pub fn _ungetwc_nolock(_Character: wint_t, _Stream: *mut FILE) -> wint_t;
 }
-unsafe extern "C" {
+extern "C" {
     pub fn __stdio_common_vfwprintf(
         _Options: ::std::os::raw::c_ulonglong,
         _Stream: *mut FILE,
@@ -327,7 +392,7 @@ unsafe extern "C" {
         _ArgList: va_list,
     ) -> ::std::os::raw::c_int;
 }
-unsafe extern "C" {
+extern "C" {
     pub fn __stdio_common_vfwprintf_s(
         _Options: ::std::os::raw::c_ulonglong,
         _Stream: *mut FILE,
@@ -336,7 +401,7 @@ unsafe extern "C" {
         _ArgList: va_list,
     ) -> ::std::os::raw::c_int;
 }
-unsafe extern "C" {
+extern "C" {
     pub fn __stdio_common_vfwprintf_p(
         _Options: ::std::os::raw::c_ulonglong,
         _Stream: *mut FILE,
@@ -345,7 +410,7 @@ unsafe extern "C" {
         _ArgList: va_list,
     ) -> ::std::os::raw::c_int;
 }
-unsafe extern "C" {
+extern "C" {
     pub fn __stdio_common_vfwscanf(
         _Options: ::std::os::raw::c_ulonglong,
         _Stream: *mut FILE,
@@ -354,7 +419,7 @@ unsafe extern "C" {
         _ArgList: va_list,
     ) -> ::std::os::raw::c_int;
 }
-unsafe extern "C" {
+extern "C" {
     pub fn __stdio_common_vswprintf(
         _Options: ::std::os::raw::c_ulonglong,
         _Buffer: *mut wchar_t,
@@ -364,7 +429,7 @@ unsafe extern "C" {
         _ArgList: va_list,
     ) -> ::std::os::raw::c_int;
 }
-unsafe extern "C" {
+extern "C" {
     pub fn __stdio_common_vswprintf_s(
         _Options: ::std::os::raw::c_ulonglong,
         _Buffer: *mut wchar_t,
@@ -374,7 +439,7 @@ unsafe extern "C" {
         _ArgList: va_list,
     ) -> ::std::os::raw::c_int;
 }
-unsafe extern "C" {
+extern "C" {
     pub fn __stdio_common_vsnwprintf_s(
         _Options: ::std::os::raw::c_ulonglong,
         _Buffer: *mut wchar_t,
@@ -385,7 +450,7 @@ unsafe extern "C" {
         _ArgList: va_list,
     ) -> ::std::os::raw::c_int;
 }
-unsafe extern "C" {
+extern "C" {
     pub fn __stdio_common_vswprintf_p(
         _Options: ::std::os::raw::c_ulonglong,
         _Buffer: *mut wchar_t,
@@ -395,7 +460,7 @@ unsafe extern "C" {
         _ArgList: va_list,
     ) -> ::std::os::raw::c_int;
 }
-unsafe extern "C" {
+extern "C" {
     pub fn __stdio_common_vswscanf(
         _Options: ::std::os::raw::c_ulonglong,
         _Buffer: *const wchar_t,
@@ -406,7 +471,7 @@ unsafe extern "C" {
     ) -> ::std::os::raw::c_int;
 }
 pub type fpos_t = ::std::os::raw::c_longlong;
-unsafe extern "C" {
+extern "C" {
     pub fn _get_stream_buffer_pointers(
         _Stream: *mut FILE,
         _Base: *mut *mut *mut ::std::os::raw::c_char,
@@ -414,17 +479,17 @@ unsafe extern "C" {
         _Count: *mut *mut ::std::os::raw::c_int,
     ) -> errno_t;
 }
-unsafe extern "C" {
+extern "C" {
     pub fn clearerr_s(_Stream: *mut FILE) -> errno_t;
 }
-unsafe extern "C" {
+extern "C" {
     pub fn fopen_s(
         _Stream: *mut *mut FILE,
         _FileName: *const ::std::os::raw::c_char,
         _Mode: *const ::std::os::raw::c_char,
     ) -> errno_t;
 }
-unsafe extern "C" {
+extern "C" {
     pub fn fread_s(
         _Buffer: *mut ::std::os::raw::c_void,
         _BufferSize: usize,
@@ -433,7 +498,7 @@ unsafe extern "C" {
         _Stream: *mut FILE,
     ) -> usize;
 }
-unsafe extern "C" {
+extern "C" {
     pub fn freopen_s(
         _Stream: *mut *mut FILE,
         _FileName: *const ::std::os::raw::c_char,
@@ -441,83 +506,83 @@ unsafe extern "C" {
         _OldStream: *mut FILE,
     ) -> errno_t;
 }
-unsafe extern "C" {
+extern "C" {
     pub fn gets_s(
         _Buffer: *mut ::std::os::raw::c_char,
         _Size: rsize_t,
     ) -> *mut ::std::os::raw::c_char;
 }
-unsafe extern "C" {
+extern "C" {
     pub fn tmpfile_s(_Stream: *mut *mut FILE) -> errno_t;
 }
-unsafe extern "C" {
+extern "C" {
     pub fn tmpnam_s(_Buffer: *mut ::std::os::raw::c_char, _Size: rsize_t) -> errno_t;
 }
-unsafe extern "C" {
+extern "C" {
     pub fn clearerr(_Stream: *mut FILE);
 }
-unsafe extern "C" {
+extern "C" {
     pub fn fclose(_Stream: *mut FILE) -> ::std::os::raw::c_int;
 }
-unsafe extern "C" {
+extern "C" {
     pub fn _fcloseall() -> ::std::os::raw::c_int;
 }
-unsafe extern "C" {
+extern "C" {
     pub fn _fdopen(
         _FileHandle: ::std::os::raw::c_int,
         _Mode: *const ::std::os::raw::c_char,
     ) -> *mut FILE;
 }
-unsafe extern "C" {
+extern "C" {
     pub fn feof(_Stream: *mut FILE) -> ::std::os::raw::c_int;
 }
-unsafe extern "C" {
+extern "C" {
     pub fn ferror(_Stream: *mut FILE) -> ::std::os::raw::c_int;
 }
-unsafe extern "C" {
+extern "C" {
     pub fn fflush(_Stream: *mut FILE) -> ::std::os::raw::c_int;
 }
-unsafe extern "C" {
+extern "C" {
     pub fn fgetc(_Stream: *mut FILE) -> ::std::os::raw::c_int;
 }
-unsafe extern "C" {
+extern "C" {
     pub fn _fgetchar() -> ::std::os::raw::c_int;
 }
-unsafe extern "C" {
+extern "C" {
     pub fn fgetpos(_Stream: *mut FILE, _Position: *mut fpos_t) -> ::std::os::raw::c_int;
 }
-unsafe extern "C" {
+extern "C" {
     pub fn fgets(
         _Buffer: *mut ::std::os::raw::c_char,
         _MaxCount: ::std::os::raw::c_int,
         _Stream: *mut FILE,
     ) -> *mut ::std::os::raw::c_char;
 }
-unsafe extern "C" {
+extern "C" {
     pub fn _fileno(_Stream: *mut FILE) -> ::std::os::raw::c_int;
 }
-unsafe extern "C" {
+extern "C" {
     pub fn _flushall() -> ::std::os::raw::c_int;
 }
-unsafe extern "C" {
+extern "C" {
     pub fn fopen(
         _FileName: *const ::std::os::raw::c_char,
         _Mode: *const ::std::os::raw::c_char,
     ) -> *mut FILE;
 }
-unsafe extern "C" {
+extern "C" {
     pub fn fputc(_Character: ::std::os::raw::c_int, _Stream: *mut FILE) -> ::std::os::raw::c_int;
 }
-unsafe extern "C" {
+extern "C" {
     pub fn _fputchar(_Character: ::std::os::raw::c_int) -> ::std::os::raw::c_int;
 }
-unsafe extern "C" {
+extern "C" {
     pub fn fputs(
         _Buffer: *const ::std::os::raw::c_char,
         _Stream: *mut FILE,
     ) -> ::std::os::raw::c_int;
 }
-unsafe extern "C" {
+extern "C" {
     pub fn fread(
         _Buffer: *mut ::std::os::raw::c_void,
         _ElementSize: ::std::os::raw::c_ulonglong,
@@ -525,44 +590,44 @@ unsafe extern "C" {
         _Stream: *mut FILE,
     ) -> ::std::os::raw::c_ulonglong;
 }
-unsafe extern "C" {
+extern "C" {
     pub fn freopen(
         _FileName: *const ::std::os::raw::c_char,
         _Mode: *const ::std::os::raw::c_char,
         _Stream: *mut FILE,
     ) -> *mut FILE;
 }
-unsafe extern "C" {
+extern "C" {
     pub fn _fsopen(
         _FileName: *const ::std::os::raw::c_char,
         _Mode: *const ::std::os::raw::c_char,
         _ShFlag: ::std::os::raw::c_int,
     ) -> *mut FILE;
 }
-unsafe extern "C" {
+extern "C" {
     pub fn fsetpos(_Stream: *mut FILE, _Position: *const fpos_t) -> ::std::os::raw::c_int;
 }
-unsafe extern "C" {
+extern "C" {
     pub fn fseek(
         _Stream: *mut FILE,
         _Offset: ::std::os::raw::c_long,
         _Origin: ::std::os::raw::c_int,
     ) -> ::std::os::raw::c_int;
 }
-unsafe extern "C" {
+extern "C" {
     pub fn _fseeki64(
         _Stream: *mut FILE,
         _Offset: ::std::os::raw::c_longlong,
         _Origin: ::std::os::raw::c_int,
     ) -> ::std::os::raw::c_int;
 }
-unsafe extern "C" {
+extern "C" {
     pub fn ftell(_Stream: *mut FILE) -> ::std::os::raw::c_long;
 }
-unsafe extern "C" {
+extern "C" {
     pub fn _ftelli64(_Stream: *mut FILE) -> ::std::os::raw::c_longlong;
 }
-unsafe extern "C" {
+extern "C" {
     pub fn fwrite(
         _Buffer: *const ::std::os::raw::c_void,
         _ElementSize: ::std::os::raw::c_ulonglong,
@@ -570,70 +635,70 @@ unsafe extern "C" {
         _Stream: *mut FILE,
     ) -> ::std::os::raw::c_ulonglong;
 }
-unsafe extern "C" {
+extern "C" {
     pub fn getc(_Stream: *mut FILE) -> ::std::os::raw::c_int;
 }
-unsafe extern "C" {
+extern "C" {
     pub fn getchar() -> ::std::os::raw::c_int;
 }
-unsafe extern "C" {
+extern "C" {
     pub fn _getmaxstdio() -> ::std::os::raw::c_int;
 }
-unsafe extern "C" {
+extern "C" {
     pub fn _getw(_Stream: *mut FILE) -> ::std::os::raw::c_int;
 }
-unsafe extern "C" {
+extern "C" {
     pub fn perror(_ErrorMessage: *const ::std::os::raw::c_char);
 }
-unsafe extern "C" {
+extern "C" {
     pub fn _pclose(_Stream: *mut FILE) -> ::std::os::raw::c_int;
 }
-unsafe extern "C" {
+extern "C" {
     pub fn _popen(
         _Command: *const ::std::os::raw::c_char,
         _Mode: *const ::std::os::raw::c_char,
     ) -> *mut FILE;
 }
-unsafe extern "C" {
+extern "C" {
     pub fn putc(_Character: ::std::os::raw::c_int, _Stream: *mut FILE) -> ::std::os::raw::c_int;
 }
-unsafe extern "C" {
+extern "C" {
     pub fn putchar(_Character: ::std::os::raw::c_int) -> ::std::os::raw::c_int;
 }
-unsafe extern "C" {
+extern "C" {
     pub fn puts(_Buffer: *const ::std::os::raw::c_char) -> ::std::os::raw::c_int;
 }
-unsafe extern "C" {
+extern "C" {
     pub fn _putw(_Word: ::std::os::raw::c_int, _Stream: *mut FILE) -> ::std::os::raw::c_int;
 }
-unsafe extern "C" {
+extern "C" {
     pub fn remove(_FileName: *const ::std::os::raw::c_char) -> ::std::os::raw::c_int;
 }
-unsafe extern "C" {
+extern "C" {
     pub fn rename(
         _OldFileName: *const ::std::os::raw::c_char,
         _NewFileName: *const ::std::os::raw::c_char,
     ) -> ::std::os::raw::c_int;
 }
-unsafe extern "C" {
+extern "C" {
     pub fn _unlink(_FileName: *const ::std::os::raw::c_char) -> ::std::os::raw::c_int;
 }
-unsafe extern "C" {
+extern "C" {
     pub fn unlink(_FileName: *const ::std::os::raw::c_char) -> ::std::os::raw::c_int;
 }
-unsafe extern "C" {
+extern "C" {
     pub fn rewind(_Stream: *mut FILE);
 }
-unsafe extern "C" {
+extern "C" {
     pub fn _rmtmp() -> ::std::os::raw::c_int;
 }
-unsafe extern "C" {
+extern "C" {
     pub fn setbuf(_Stream: *mut FILE, _Buffer: *mut ::std::os::raw::c_char);
 }
-unsafe extern "C" {
+extern "C" {
     pub fn _setmaxstdio(_Maximum: ::std::os::raw::c_int) -> ::std::os::raw::c_int;
 }
-unsafe extern "C" {
+extern "C" {
     pub fn setvbuf(
         _Stream: *mut FILE,
         _Buffer: *mut ::std::os::raw::c_char,
@@ -641,43 +706,43 @@ unsafe extern "C" {
         _Size: usize,
     ) -> ::std::os::raw::c_int;
 }
-unsafe extern "C" {
+extern "C" {
     pub fn _tempnam(
         _DirectoryName: *const ::std::os::raw::c_char,
         _FilePrefix: *const ::std::os::raw::c_char,
     ) -> *mut ::std::os::raw::c_char;
 }
-unsafe extern "C" {
+extern "C" {
     pub fn tmpfile() -> *mut FILE;
 }
-unsafe extern "C" {
+extern "C" {
     pub fn tmpnam(_Buffer: *mut ::std::os::raw::c_char) -> *mut ::std::os::raw::c_char;
 }
-unsafe extern "C" {
+extern "C" {
     pub fn ungetc(_Character: ::std::os::raw::c_int, _Stream: *mut FILE) -> ::std::os::raw::c_int;
 }
-unsafe extern "C" {
+extern "C" {
     pub fn _lock_file(_Stream: *mut FILE);
 }
-unsafe extern "C" {
+extern "C" {
     pub fn _unlock_file(_Stream: *mut FILE);
 }
-unsafe extern "C" {
+extern "C" {
     pub fn _fclose_nolock(_Stream: *mut FILE) -> ::std::os::raw::c_int;
 }
-unsafe extern "C" {
+extern "C" {
     pub fn _fflush_nolock(_Stream: *mut FILE) -> ::std::os::raw::c_int;
 }
-unsafe extern "C" {
+extern "C" {
     pub fn _fgetc_nolock(_Stream: *mut FILE) -> ::std::os::raw::c_int;
 }
-unsafe extern "C" {
+extern "C" {
     pub fn _fputc_nolock(
         _Character: ::std::os::raw::c_int,
         _Stream: *mut FILE,
     ) -> ::std::os::raw::c_int;
 }
-unsafe extern "C" {
+extern "C" {
     pub fn _fread_nolock(
         _Buffer: *mut ::std::os::raw::c_void,
         _ElementSize: usize,
@@ -685,7 +750,7 @@ unsafe extern "C" {
         _Stream: *mut FILE,
     ) -> usize;
 }
-unsafe extern "C" {
+extern "C" {
     pub fn _fread_nolock_s(
         _Buffer: *mut ::std::os::raw::c_void,
         _BufferSize: usize,
@@ -694,27 +759,27 @@ unsafe extern "C" {
         _Stream: *mut FILE,
     ) -> usize;
 }
-unsafe extern "C" {
+extern "C" {
     pub fn _fseek_nolock(
         _Stream: *mut FILE,
         _Offset: ::std::os::raw::c_long,
         _Origin: ::std::os::raw::c_int,
     ) -> ::std::os::raw::c_int;
 }
-unsafe extern "C" {
+extern "C" {
     pub fn _fseeki64_nolock(
         _Stream: *mut FILE,
         _Offset: ::std::os::raw::c_longlong,
         _Origin: ::std::os::raw::c_int,
     ) -> ::std::os::raw::c_int;
 }
-unsafe extern "C" {
+extern "C" {
     pub fn _ftell_nolock(_Stream: *mut FILE) -> ::std::os::raw::c_long;
 }
-unsafe extern "C" {
+extern "C" {
     pub fn _ftelli64_nolock(_Stream: *mut FILE) -> ::std::os::raw::c_longlong;
 }
-unsafe extern "C" {
+extern "C" {
     pub fn _fwrite_nolock(
         _Buffer: *const ::std::os::raw::c_void,
         _ElementSize: usize,
@@ -722,25 +787,25 @@ unsafe extern "C" {
         _Stream: *mut FILE,
     ) -> usize;
 }
-unsafe extern "C" {
+extern "C" {
     pub fn _getc_nolock(_Stream: *mut FILE) -> ::std::os::raw::c_int;
 }
-unsafe extern "C" {
+extern "C" {
     pub fn _putc_nolock(
         _Character: ::std::os::raw::c_int,
         _Stream: *mut FILE,
     ) -> ::std::os::raw::c_int;
 }
-unsafe extern "C" {
+extern "C" {
     pub fn _ungetc_nolock(
         _Character: ::std::os::raw::c_int,
         _Stream: *mut FILE,
     ) -> ::std::os::raw::c_int;
 }
-unsafe extern "C" {
+extern "C" {
     pub fn __p__commode() -> *mut ::std::os::raw::c_int;
 }
-unsafe extern "C" {
+extern "C" {
     pub fn __stdio_common_vfprintf(
         _Options: ::std::os::raw::c_ulonglong,
         _Stream: *mut FILE,
@@ -749,7 +814,7 @@ unsafe extern "C" {
         _ArgList: va_list,
     ) -> ::std::os::raw::c_int;
 }
-unsafe extern "C" {
+extern "C" {
     pub fn __stdio_common_vfprintf_s(
         _Options: ::std::os::raw::c_ulonglong,
         _Stream: *mut FILE,
@@ -758,7 +823,7 @@ unsafe extern "C" {
         _ArgList: va_list,
     ) -> ::std::os::raw::c_int;
 }
-unsafe extern "C" {
+extern "C" {
     pub fn __stdio_common_vfprintf_p(
         _Options: ::std::os::raw::c_ulonglong,
         _Stream: *mut FILE,
@@ -767,13 +832,13 @@ unsafe extern "C" {
         _ArgList: va_list,
     ) -> ::std::os::raw::c_int;
 }
-unsafe extern "C" {
+extern "C" {
     pub fn _set_printf_count_output(_Value: ::std::os::raw::c_int) -> ::std::os::raw::c_int;
 }
-unsafe extern "C" {
+extern "C" {
     pub fn _get_printf_count_output() -> ::std::os::raw::c_int;
 }
-unsafe extern "C" {
+extern "C" {
     pub fn __stdio_common_vfscanf(
         _Options: ::std::os::raw::c_ulonglong,
         _Stream: *mut FILE,
@@ -782,7 +847,7 @@ unsafe extern "C" {
         _Arglist: va_list,
     ) -> ::std::os::raw::c_int;
 }
-unsafe extern "C" {
+extern "C" {
     pub fn __stdio_common_vsprintf(
         _Options: ::std::os::raw::c_ulonglong,
         _Buffer: *mut ::std::os::raw::c_char,
@@ -792,7 +857,7 @@ unsafe extern "C" {
         _ArgList: va_list,
     ) -> ::std::os::raw::c_int;
 }
-unsafe extern "C" {
+extern "C" {
     pub fn __stdio_common_vsprintf_s(
         _Options: ::std::os::raw::c_ulonglong,
         _Buffer: *mut ::std::os::raw::c_char,
@@ -802,7 +867,7 @@ unsafe extern "C" {
         _ArgList: va_list,
     ) -> ::std::os::raw::c_int;
 }
-unsafe extern "C" {
+extern "C" {
     pub fn __stdio_common_vsnprintf_s(
         _Options: ::std::os::raw::c_ulonglong,
         _Buffer: *mut ::std::os::raw::c_char,
@@ -813,7 +878,7 @@ unsafe extern "C" {
         _ArgList: va_list,
     ) -> ::std::os::raw::c_int;
 }
-unsafe extern "C" {
+extern "C" {
     pub fn __stdio_common_vsprintf_p(
         _Options: ::std::os::raw::c_ulonglong,
         _Buffer: *mut ::std::os::raw::c_char,
@@ -823,7 +888,7 @@ unsafe extern "C" {
         _ArgList: va_list,
     ) -> ::std::os::raw::c_int;
 }
-unsafe extern "C" {
+extern "C" {
     pub fn __stdio_common_vsscanf(
         _Options: ::std::os::raw::c_ulonglong,
         _Buffer: *const ::std::os::raw::c_char,
@@ -833,40 +898,40 @@ unsafe extern "C" {
         _ArgList: va_list,
     ) -> ::std::os::raw::c_int;
 }
-unsafe extern "C" {
+extern "C" {
     pub fn tempnam(
         _Directory: *const ::std::os::raw::c_char,
         _FilePrefix: *const ::std::os::raw::c_char,
     ) -> *mut ::std::os::raw::c_char;
 }
-unsafe extern "C" {
+extern "C" {
     pub fn fcloseall() -> ::std::os::raw::c_int;
 }
-unsafe extern "C" {
+extern "C" {
     pub fn fdopen(
         _FileHandle: ::std::os::raw::c_int,
         _Format: *const ::std::os::raw::c_char,
     ) -> *mut FILE;
 }
-unsafe extern "C" {
+extern "C" {
     pub fn fgetchar() -> ::std::os::raw::c_int;
 }
-unsafe extern "C" {
+extern "C" {
     pub fn fileno(_Stream: *mut FILE) -> ::std::os::raw::c_int;
 }
-unsafe extern "C" {
+extern "C" {
     pub fn flushall() -> ::std::os::raw::c_int;
 }
-unsafe extern "C" {
+extern "C" {
     pub fn fputchar(_Ch: ::std::os::raw::c_int) -> ::std::os::raw::c_int;
 }
-unsafe extern "C" {
+extern "C" {
     pub fn getw(_Stream: *mut FILE) -> ::std::os::raw::c_int;
 }
-unsafe extern "C" {
+extern "C" {
     pub fn putw(_Ch: ::std::os::raw::c_int, _Stream: *mut FILE) -> ::std::os::raw::c_int;
 }
-unsafe extern "C" {
+extern "C" {
     pub fn rmtmp() -> ::std::os::raw::c_int;
 }
 pub type int_least8_t = ::std::os::raw::c_schar;
@@ -918,7 +983,7 @@ pub const MQTTPropertyCodes_MQTTPROPERTY_CODE_SUBSCRIPTION_IDENTIFIERS_AVAILABLE
     MQTTPropertyCodes = 41;
 pub const MQTTPropertyCodes_MQTTPROPERTY_CODE_SHARED_SUBSCRIPTION_AVAILABLE: MQTTPropertyCodes = 42;
 pub type MQTTPropertyCodes = ::std::os::raw::c_int;
-unsafe extern "C" {
+extern "C" {
     pub fn MQTTPropertyName(value: MQTTPropertyCodes) -> *const ::std::os::raw::c_char;
 }
 pub const MQTTPropertyTypes_MQTTPROPERTY_TYPE_BYTE: MQTTPropertyTypes = 0;
@@ -929,7 +994,7 @@ pub const MQTTPropertyTypes_MQTTPROPERTY_TYPE_BINARY_DATA: MQTTPropertyTypes = 4
 pub const MQTTPropertyTypes_MQTTPROPERTY_TYPE_UTF_8_ENCODED_STRING: MQTTPropertyTypes = 5;
 pub const MQTTPropertyTypes_MQTTPROPERTY_TYPE_UTF_8_STRING_PAIR: MQTTPropertyTypes = 6;
 pub type MQTTPropertyTypes = ::std::os::raw::c_int;
-unsafe extern "C" {
+extern "C" {
     pub fn MQTTProperty_getType(value: MQTTPropertyCodes) -> ::std::os::raw::c_int;
 }
 #[repr(C)]
@@ -938,13 +1003,31 @@ pub struct MQTTLenString {
     pub len: ::std::os::raw::c_int,
     pub data: *mut ::std::os::raw::c_char,
 }
-#[allow(clippy::unnecessary_operation, clippy::identity_op)]
-const _: () = {
-    ["Size of MQTTLenString"][::std::mem::size_of::<MQTTLenString>() - 16usize];
-    ["Alignment of MQTTLenString"][::std::mem::align_of::<MQTTLenString>() - 8usize];
-    ["Offset of field: MQTTLenString::len"][::std::mem::offset_of!(MQTTLenString, len) - 0usize];
-    ["Offset of field: MQTTLenString::data"][::std::mem::offset_of!(MQTTLenString, data) - 8usize];
-};
+#[test]
+fn bindgen_test_layout_MQTTLenString() {
+    const UNINIT: ::std::mem::MaybeUninit<MQTTLenString> = ::std::mem::MaybeUninit::uninit();
+    let ptr = UNINIT.as_ptr();
+    assert_eq!(
+        ::std::mem::size_of::<MQTTLenString>(),
+        16usize,
+        "Size of MQTTLenString"
+    );
+    assert_eq!(
+        ::std::mem::align_of::<MQTTLenString>(),
+        8usize,
+        "Alignment of MQTTLenString"
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).len) as usize - ptr as usize },
+        0usize,
+        "Offset of field: MQTTLenString::len"
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).data) as usize - ptr as usize },
+        8usize,
+        "Offset of field: MQTTLenString::data"
+    );
+}
 #[repr(C)]
 #[derive(Copy, Clone)]
 pub struct MQTTProperty {
@@ -965,38 +1048,88 @@ pub struct MQTTProperty__bindgen_ty_1__bindgen_ty_1 {
     pub data: MQTTLenString,
     pub value: MQTTLenString,
 }
-#[allow(clippy::unnecessary_operation, clippy::identity_op)]
-const _: () = {
-    ["Size of MQTTProperty__bindgen_ty_1__bindgen_ty_1"]
-        [::std::mem::size_of::<MQTTProperty__bindgen_ty_1__bindgen_ty_1>() - 32usize];
-    ["Alignment of MQTTProperty__bindgen_ty_1__bindgen_ty_1"]
-        [::std::mem::align_of::<MQTTProperty__bindgen_ty_1__bindgen_ty_1>() - 8usize];
-    ["Offset of field: MQTTProperty__bindgen_ty_1__bindgen_ty_1::data"]
-        [::std::mem::offset_of!(MQTTProperty__bindgen_ty_1__bindgen_ty_1, data) - 0usize];
-    ["Offset of field: MQTTProperty__bindgen_ty_1__bindgen_ty_1::value"]
-        [::std::mem::offset_of!(MQTTProperty__bindgen_ty_1__bindgen_ty_1, value) - 16usize];
-};
-#[allow(clippy::unnecessary_operation, clippy::identity_op)]
-const _: () = {
-    ["Size of MQTTProperty__bindgen_ty_1"]
-        [::std::mem::size_of::<MQTTProperty__bindgen_ty_1>() - 32usize];
-    ["Alignment of MQTTProperty__bindgen_ty_1"]
-        [::std::mem::align_of::<MQTTProperty__bindgen_ty_1>() - 8usize];
-    ["Offset of field: MQTTProperty__bindgen_ty_1::byte"]
-        [::std::mem::offset_of!(MQTTProperty__bindgen_ty_1, byte) - 0usize];
-    ["Offset of field: MQTTProperty__bindgen_ty_1::integer2"]
-        [::std::mem::offset_of!(MQTTProperty__bindgen_ty_1, integer2) - 0usize];
-    ["Offset of field: MQTTProperty__bindgen_ty_1::integer4"]
-        [::std::mem::offset_of!(MQTTProperty__bindgen_ty_1, integer4) - 0usize];
-};
-#[allow(clippy::unnecessary_operation, clippy::identity_op)]
-const _: () = {
-    ["Size of MQTTProperty"][::std::mem::size_of::<MQTTProperty>() - 40usize];
-    ["Alignment of MQTTProperty"][::std::mem::align_of::<MQTTProperty>() - 8usize];
-    ["Offset of field: MQTTProperty::identifier"]
-        [::std::mem::offset_of!(MQTTProperty, identifier) - 0usize];
-    ["Offset of field: MQTTProperty::value"][::std::mem::offset_of!(MQTTProperty, value) - 8usize];
-};
+#[test]
+fn bindgen_test_layout_MQTTProperty__bindgen_ty_1__bindgen_ty_1() {
+    const UNINIT: ::std::mem::MaybeUninit<MQTTProperty__bindgen_ty_1__bindgen_ty_1> =
+        ::std::mem::MaybeUninit::uninit();
+    let ptr = UNINIT.as_ptr();
+    assert_eq!(
+        ::std::mem::size_of::<MQTTProperty__bindgen_ty_1__bindgen_ty_1>(),
+        32usize,
+        "Size of MQTTProperty__bindgen_ty_1__bindgen_ty_1"
+    );
+    assert_eq!(
+        ::std::mem::align_of::<MQTTProperty__bindgen_ty_1__bindgen_ty_1>(),
+        8usize,
+        "Alignment of MQTTProperty__bindgen_ty_1__bindgen_ty_1"
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).data) as usize - ptr as usize },
+        0usize,
+        "Offset of field: MQTTProperty__bindgen_ty_1__bindgen_ty_1::data"
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).value) as usize - ptr as usize },
+        16usize,
+        "Offset of field: MQTTProperty__bindgen_ty_1__bindgen_ty_1::value"
+    );
+}
+#[test]
+fn bindgen_test_layout_MQTTProperty__bindgen_ty_1() {
+    const UNINIT: ::std::mem::MaybeUninit<MQTTProperty__bindgen_ty_1> =
+        ::std::mem::MaybeUninit::uninit();
+    let ptr = UNINIT.as_ptr();
+    assert_eq!(
+        ::std::mem::size_of::<MQTTProperty__bindgen_ty_1>(),
+        32usize,
+        "Size of MQTTProperty__bindgen_ty_1"
+    );
+    assert_eq!(
+        ::std::mem::align_of::<MQTTProperty__bindgen_ty_1>(),
+        8usize,
+        "Alignment of MQTTProperty__bindgen_ty_1"
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).byte) as usize - ptr as usize },
+        0usize,
+        "Offset of field: MQTTProperty__bindgen_ty_1::byte"
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).integer2) as usize - ptr as usize },
+        0usize,
+        "Offset of field: MQTTProperty__bindgen_ty_1::integer2"
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).integer4) as usize - ptr as usize },
+        0usize,
+        "Offset of field: MQTTProperty__bindgen_ty_1::integer4"
+    );
+}
+#[test]
+fn bindgen_test_layout_MQTTProperty() {
+    const UNINIT: ::std::mem::MaybeUninit<MQTTProperty> = ::std::mem::MaybeUninit::uninit();
+    let ptr = UNINIT.as_ptr();
+    assert_eq!(
+        ::std::mem::size_of::<MQTTProperty>(),
+        40usize,
+        "Size of MQTTProperty"
+    );
+    assert_eq!(
+        ::std::mem::align_of::<MQTTProperty>(),
+        8usize,
+        "Alignment of MQTTProperty"
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).identifier) as usize - ptr as usize },
+        0usize,
+        "Offset of field: MQTTProperty::identifier"
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).value) as usize - ptr as usize },
+        8usize,
+        "Offset of field: MQTTProperty::value"
+    );
+}
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
 pub struct MQTTProperties {
@@ -1005,79 +1138,101 @@ pub struct MQTTProperties {
     pub length: ::std::os::raw::c_int,
     pub array: *mut MQTTProperty,
 }
-#[allow(clippy::unnecessary_operation, clippy::identity_op)]
-const _: () = {
-    ["Size of MQTTProperties"][::std::mem::size_of::<MQTTProperties>() - 24usize];
-    ["Alignment of MQTTProperties"][::std::mem::align_of::<MQTTProperties>() - 8usize];
-    ["Offset of field: MQTTProperties::count"]
-        [::std::mem::offset_of!(MQTTProperties, count) - 0usize];
-    ["Offset of field: MQTTProperties::max_count"]
-        [::std::mem::offset_of!(MQTTProperties, max_count) - 4usize];
-    ["Offset of field: MQTTProperties::length"]
-        [::std::mem::offset_of!(MQTTProperties, length) - 8usize];
-    ["Offset of field: MQTTProperties::array"]
-        [::std::mem::offset_of!(MQTTProperties, array) - 16usize];
-};
-unsafe extern "C" {
+#[test]
+fn bindgen_test_layout_MQTTProperties() {
+    const UNINIT: ::std::mem::MaybeUninit<MQTTProperties> = ::std::mem::MaybeUninit::uninit();
+    let ptr = UNINIT.as_ptr();
+    assert_eq!(
+        ::std::mem::size_of::<MQTTProperties>(),
+        24usize,
+        "Size of MQTTProperties"
+    );
+    assert_eq!(
+        ::std::mem::align_of::<MQTTProperties>(),
+        8usize,
+        "Alignment of MQTTProperties"
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).count) as usize - ptr as usize },
+        0usize,
+        "Offset of field: MQTTProperties::count"
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).max_count) as usize - ptr as usize },
+        4usize,
+        "Offset of field: MQTTProperties::max_count"
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).length) as usize - ptr as usize },
+        8usize,
+        "Offset of field: MQTTProperties::length"
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).array) as usize - ptr as usize },
+        16usize,
+        "Offset of field: MQTTProperties::array"
+    );
+}
+extern "C" {
     pub fn MQTTProperties_len(props: *const MQTTProperties) -> ::std::os::raw::c_int;
 }
-unsafe extern "C" {
+extern "C" {
     pub fn MQTTProperties_add(
         props: *mut MQTTProperties,
         prop: *const MQTTProperty,
     ) -> ::std::os::raw::c_int;
 }
-unsafe extern "C" {
+extern "C" {
     pub fn MQTTProperties_write(
         pptr: *mut *mut ::std::os::raw::c_char,
         properties: *const MQTTProperties,
     ) -> ::std::os::raw::c_int;
 }
-unsafe extern "C" {
+extern "C" {
     pub fn MQTTProperties_read(
         properties: *mut MQTTProperties,
         pptr: *mut *mut ::std::os::raw::c_char,
         enddata: *mut ::std::os::raw::c_char,
     ) -> ::std::os::raw::c_int;
 }
-unsafe extern "C" {
+extern "C" {
     pub fn MQTTProperties_free(properties: *mut MQTTProperties);
 }
-unsafe extern "C" {
+extern "C" {
     pub fn MQTTProperties_copy(props: *const MQTTProperties) -> MQTTProperties;
 }
-unsafe extern "C" {
+extern "C" {
     pub fn MQTTProperties_hasProperty(
         props: *const MQTTProperties,
         propid: MQTTPropertyCodes,
     ) -> ::std::os::raw::c_int;
 }
-unsafe extern "C" {
+extern "C" {
     pub fn MQTTProperties_propertyCount(
         props: *const MQTTProperties,
         propid: MQTTPropertyCodes,
     ) -> ::std::os::raw::c_int;
 }
-unsafe extern "C" {
+extern "C" {
     pub fn MQTTProperties_getNumericValue(
         props: *const MQTTProperties,
         propid: MQTTPropertyCodes,
     ) -> i64;
 }
-unsafe extern "C" {
+extern "C" {
     pub fn MQTTProperties_getNumericValueAt(
         props: *const MQTTProperties,
         propid: MQTTPropertyCodes,
         index: ::std::os::raw::c_int,
     ) -> i64;
 }
-unsafe extern "C" {
+extern "C" {
     pub fn MQTTProperties_getProperty(
         props: *const MQTTProperties,
         propid: MQTTPropertyCodes,
     ) -> *mut MQTTProperty;
 }
-unsafe extern "C" {
+extern "C" {
     pub fn MQTTProperties_getPropertyAt(
         props: *const MQTTProperties,
         propid: MQTTPropertyCodes,
@@ -1132,7 +1287,7 @@ pub const MQTTReasonCodes_MQTTREASONCODE_SUBSCRIPTION_IDENTIFIERS_NOT_SUPPORTED:
 pub const MQTTReasonCodes_MQTTREASONCODE_WILDCARD_SUBSCRIPTIONS_NOT_SUPPORTED: MQTTReasonCodes =
     162;
 pub type MQTTReasonCodes = ::std::os::raw::c_int;
-unsafe extern "C" {
+extern "C" {
     pub fn MQTTReasonCode_toString(value: MQTTReasonCodes) -> *const ::std::os::raw::c_char;
 }
 #[repr(C)]
@@ -1144,22 +1299,47 @@ pub struct MQTTSubscribe_options {
     pub retainAsPublished: ::std::os::raw::c_uchar,
     pub retainHandling: ::std::os::raw::c_uchar,
 }
-#[allow(clippy::unnecessary_operation, clippy::identity_op)]
-const _: () = {
-    ["Size of MQTTSubscribe_options"][::std::mem::size_of::<MQTTSubscribe_options>() - 12usize];
-    ["Alignment of MQTTSubscribe_options"]
-        [::std::mem::align_of::<MQTTSubscribe_options>() - 4usize];
-    ["Offset of field: MQTTSubscribe_options::struct_id"]
-        [::std::mem::offset_of!(MQTTSubscribe_options, struct_id) - 0usize];
-    ["Offset of field: MQTTSubscribe_options::struct_version"]
-        [::std::mem::offset_of!(MQTTSubscribe_options, struct_version) - 4usize];
-    ["Offset of field: MQTTSubscribe_options::noLocal"]
-        [::std::mem::offset_of!(MQTTSubscribe_options, noLocal) - 8usize];
-    ["Offset of field: MQTTSubscribe_options::retainAsPublished"]
-        [::std::mem::offset_of!(MQTTSubscribe_options, retainAsPublished) - 9usize];
-    ["Offset of field: MQTTSubscribe_options::retainHandling"]
-        [::std::mem::offset_of!(MQTTSubscribe_options, retainHandling) - 10usize];
-};
+#[test]
+fn bindgen_test_layout_MQTTSubscribe_options() {
+    const UNINIT: ::std::mem::MaybeUninit<MQTTSubscribe_options> =
+        ::std::mem::MaybeUninit::uninit();
+    let ptr = UNINIT.as_ptr();
+    assert_eq!(
+        ::std::mem::size_of::<MQTTSubscribe_options>(),
+        12usize,
+        "Size of MQTTSubscribe_options"
+    );
+    assert_eq!(
+        ::std::mem::align_of::<MQTTSubscribe_options>(),
+        4usize,
+        "Alignment of MQTTSubscribe_options"
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).struct_id) as usize - ptr as usize },
+        0usize,
+        "Offset of field: MQTTSubscribe_options::struct_id"
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).struct_version) as usize - ptr as usize },
+        4usize,
+        "Offset of field: MQTTSubscribe_options::struct_version"
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).noLocal) as usize - ptr as usize },
+        8usize,
+        "Offset of field: MQTTSubscribe_options::noLocal"
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).retainAsPublished) as usize - ptr as usize },
+        9usize,
+        "Offset of field: MQTTSubscribe_options::retainAsPublished"
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).retainHandling) as usize - ptr as usize },
+        10usize,
+        "Offset of field: MQTTSubscribe_options::retainHandling"
+    );
+}
 pub type Persistence_open = ::std::option::Option<
     unsafe extern "C" fn(
         handle: *mut *mut ::std::os::raw::c_void,
@@ -1223,30 +1403,67 @@ pub struct MQTTClient_persistence {
     pub pclear: Persistence_clear,
     pub pcontainskey: Persistence_containskey,
 }
-#[allow(clippy::unnecessary_operation, clippy::identity_op)]
-const _: () = {
-    ["Size of MQTTClient_persistence"][::std::mem::size_of::<MQTTClient_persistence>() - 72usize];
-    ["Alignment of MQTTClient_persistence"]
-        [::std::mem::align_of::<MQTTClient_persistence>() - 8usize];
-    ["Offset of field: MQTTClient_persistence::context"]
-        [::std::mem::offset_of!(MQTTClient_persistence, context) - 0usize];
-    ["Offset of field: MQTTClient_persistence::popen"]
-        [::std::mem::offset_of!(MQTTClient_persistence, popen) - 8usize];
-    ["Offset of field: MQTTClient_persistence::pclose"]
-        [::std::mem::offset_of!(MQTTClient_persistence, pclose) - 16usize];
-    ["Offset of field: MQTTClient_persistence::pput"]
-        [::std::mem::offset_of!(MQTTClient_persistence, pput) - 24usize];
-    ["Offset of field: MQTTClient_persistence::pget"]
-        [::std::mem::offset_of!(MQTTClient_persistence, pget) - 32usize];
-    ["Offset of field: MQTTClient_persistence::premove"]
-        [::std::mem::offset_of!(MQTTClient_persistence, premove) - 40usize];
-    ["Offset of field: MQTTClient_persistence::pkeys"]
-        [::std::mem::offset_of!(MQTTClient_persistence, pkeys) - 48usize];
-    ["Offset of field: MQTTClient_persistence::pclear"]
-        [::std::mem::offset_of!(MQTTClient_persistence, pclear) - 56usize];
-    ["Offset of field: MQTTClient_persistence::pcontainskey"]
-        [::std::mem::offset_of!(MQTTClient_persistence, pcontainskey) - 64usize];
-};
+#[test]
+fn bindgen_test_layout_MQTTClient_persistence() {
+    const UNINIT: ::std::mem::MaybeUninit<MQTTClient_persistence> =
+        ::std::mem::MaybeUninit::uninit();
+    let ptr = UNINIT.as_ptr();
+    assert_eq!(
+        ::std::mem::size_of::<MQTTClient_persistence>(),
+        72usize,
+        "Size of MQTTClient_persistence"
+    );
+    assert_eq!(
+        ::std::mem::align_of::<MQTTClient_persistence>(),
+        8usize,
+        "Alignment of MQTTClient_persistence"
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).context) as usize - ptr as usize },
+        0usize,
+        "Offset of field: MQTTClient_persistence::context"
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).popen) as usize - ptr as usize },
+        8usize,
+        "Offset of field: MQTTClient_persistence::popen"
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).pclose) as usize - ptr as usize },
+        16usize,
+        "Offset of field: MQTTClient_persistence::pclose"
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).pput) as usize - ptr as usize },
+        24usize,
+        "Offset of field: MQTTClient_persistence::pput"
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).pget) as usize - ptr as usize },
+        32usize,
+        "Offset of field: MQTTClient_persistence::pget"
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).premove) as usize - ptr as usize },
+        40usize,
+        "Offset of field: MQTTClient_persistence::premove"
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).pkeys) as usize - ptr as usize },
+        48usize,
+        "Offset of field: MQTTClient_persistence::pkeys"
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).pclear) as usize - ptr as usize },
+        56usize,
+        "Offset of field: MQTTClient_persistence::pclear"
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).pcontainskey) as usize - ptr as usize },
+        64usize,
+        "Offset of field: MQTTClient_persistence::pcontainskey"
+    );
+}
 pub type MQTTPersistence_beforeWrite = ::std::option::Option<
     unsafe extern "C" fn(
         context: *mut ::std::os::raw::c_void,
@@ -1269,19 +1486,38 @@ pub struct MQTTAsync_init_options {
     pub struct_version: ::std::os::raw::c_int,
     pub do_openssl_init: ::std::os::raw::c_int,
 }
-#[allow(clippy::unnecessary_operation, clippy::identity_op)]
-const _: () = {
-    ["Size of MQTTAsync_init_options"][::std::mem::size_of::<MQTTAsync_init_options>() - 12usize];
-    ["Alignment of MQTTAsync_init_options"]
-        [::std::mem::align_of::<MQTTAsync_init_options>() - 4usize];
-    ["Offset of field: MQTTAsync_init_options::struct_id"]
-        [::std::mem::offset_of!(MQTTAsync_init_options, struct_id) - 0usize];
-    ["Offset of field: MQTTAsync_init_options::struct_version"]
-        [::std::mem::offset_of!(MQTTAsync_init_options, struct_version) - 4usize];
-    ["Offset of field: MQTTAsync_init_options::do_openssl_init"]
-        [::std::mem::offset_of!(MQTTAsync_init_options, do_openssl_init) - 8usize];
-};
-unsafe extern "C" {
+#[test]
+fn bindgen_test_layout_MQTTAsync_init_options() {
+    const UNINIT: ::std::mem::MaybeUninit<MQTTAsync_init_options> =
+        ::std::mem::MaybeUninit::uninit();
+    let ptr = UNINIT.as_ptr();
+    assert_eq!(
+        ::std::mem::size_of::<MQTTAsync_init_options>(),
+        12usize,
+        "Size of MQTTAsync_init_options"
+    );
+    assert_eq!(
+        ::std::mem::align_of::<MQTTAsync_init_options>(),
+        4usize,
+        "Alignment of MQTTAsync_init_options"
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).struct_id) as usize - ptr as usize },
+        0usize,
+        "Offset of field: MQTTAsync_init_options::struct_id"
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).struct_version) as usize - ptr as usize },
+        4usize,
+        "Offset of field: MQTTAsync_init_options::struct_version"
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).do_openssl_init) as usize - ptr as usize },
+        8usize,
+        "Offset of field: MQTTAsync_init_options::do_openssl_init"
+    );
+}
+extern "C" {
     pub fn MQTTAsync_global_init(inits: *mut MQTTAsync_init_options);
 }
 pub type MQTTAsync = *mut ::std::os::raw::c_void;
@@ -1299,29 +1535,66 @@ pub struct MQTTAsync_message {
     pub msgid: ::std::os::raw::c_int,
     pub properties: MQTTProperties,
 }
-#[allow(clippy::unnecessary_operation, clippy::identity_op)]
-const _: () = {
-    ["Size of MQTTAsync_message"][::std::mem::size_of::<MQTTAsync_message>() - 64usize];
-    ["Alignment of MQTTAsync_message"][::std::mem::align_of::<MQTTAsync_message>() - 8usize];
-    ["Offset of field: MQTTAsync_message::struct_id"]
-        [::std::mem::offset_of!(MQTTAsync_message, struct_id) - 0usize];
-    ["Offset of field: MQTTAsync_message::struct_version"]
-        [::std::mem::offset_of!(MQTTAsync_message, struct_version) - 4usize];
-    ["Offset of field: MQTTAsync_message::payloadlen"]
-        [::std::mem::offset_of!(MQTTAsync_message, payloadlen) - 8usize];
-    ["Offset of field: MQTTAsync_message::payload"]
-        [::std::mem::offset_of!(MQTTAsync_message, payload) - 16usize];
-    ["Offset of field: MQTTAsync_message::qos"]
-        [::std::mem::offset_of!(MQTTAsync_message, qos) - 24usize];
-    ["Offset of field: MQTTAsync_message::retained"]
-        [::std::mem::offset_of!(MQTTAsync_message, retained) - 28usize];
-    ["Offset of field: MQTTAsync_message::dup"]
-        [::std::mem::offset_of!(MQTTAsync_message, dup) - 32usize];
-    ["Offset of field: MQTTAsync_message::msgid"]
-        [::std::mem::offset_of!(MQTTAsync_message, msgid) - 36usize];
-    ["Offset of field: MQTTAsync_message::properties"]
-        [::std::mem::offset_of!(MQTTAsync_message, properties) - 40usize];
-};
+#[test]
+fn bindgen_test_layout_MQTTAsync_message() {
+    const UNINIT: ::std::mem::MaybeUninit<MQTTAsync_message> = ::std::mem::MaybeUninit::uninit();
+    let ptr = UNINIT.as_ptr();
+    assert_eq!(
+        ::std::mem::size_of::<MQTTAsync_message>(),
+        64usize,
+        "Size of MQTTAsync_message"
+    );
+    assert_eq!(
+        ::std::mem::align_of::<MQTTAsync_message>(),
+        8usize,
+        "Alignment of MQTTAsync_message"
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).struct_id) as usize - ptr as usize },
+        0usize,
+        "Offset of field: MQTTAsync_message::struct_id"
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).struct_version) as usize - ptr as usize },
+        4usize,
+        "Offset of field: MQTTAsync_message::struct_version"
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).payloadlen) as usize - ptr as usize },
+        8usize,
+        "Offset of field: MQTTAsync_message::payloadlen"
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).payload) as usize - ptr as usize },
+        16usize,
+        "Offset of field: MQTTAsync_message::payload"
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).qos) as usize - ptr as usize },
+        24usize,
+        "Offset of field: MQTTAsync_message::qos"
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).retained) as usize - ptr as usize },
+        28usize,
+        "Offset of field: MQTTAsync_message::retained"
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).dup) as usize - ptr as usize },
+        32usize,
+        "Offset of field: MQTTAsync_message::dup"
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).msgid) as usize - ptr as usize },
+        36usize,
+        "Offset of field: MQTTAsync_message::msgid"
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).properties) as usize - ptr as usize },
+        40usize,
+        "Offset of field: MQTTAsync_message::properties"
+    );
+}
 pub type MQTTAsync_messageArrived = ::std::option::Option<
     unsafe extern "C" fn(
         context: *mut ::std::os::raw::c_void,
@@ -1346,7 +1619,7 @@ pub type MQTTAsync_disconnected = ::std::option::Option<
         reasonCode: MQTTReasonCodes,
     ),
 >;
-unsafe extern "C" {
+extern "C" {
     pub fn MQTTAsync_setDisconnected(
         handle: MQTTAsync,
         context: *mut ::std::os::raw::c_void,
@@ -1367,52 +1640,89 @@ pub struct MQTTAsync_connectData__bindgen_ty_1 {
     pub len: ::std::os::raw::c_int,
     pub data: *const ::std::os::raw::c_void,
 }
-#[allow(clippy::unnecessary_operation, clippy::identity_op)]
-const _: () = {
-    ["Size of MQTTAsync_connectData__bindgen_ty_1"]
-        [::std::mem::size_of::<MQTTAsync_connectData__bindgen_ty_1>() - 16usize];
-    ["Alignment of MQTTAsync_connectData__bindgen_ty_1"]
-        [::std::mem::align_of::<MQTTAsync_connectData__bindgen_ty_1>() - 8usize];
-    ["Offset of field: MQTTAsync_connectData__bindgen_ty_1::len"]
-        [::std::mem::offset_of!(MQTTAsync_connectData__bindgen_ty_1, len) - 0usize];
-    ["Offset of field: MQTTAsync_connectData__bindgen_ty_1::data"]
-        [::std::mem::offset_of!(MQTTAsync_connectData__bindgen_ty_1, data) - 8usize];
-};
-#[allow(clippy::unnecessary_operation, clippy::identity_op)]
-const _: () = {
-    ["Size of MQTTAsync_connectData"][::std::mem::size_of::<MQTTAsync_connectData>() - 32usize];
-    ["Alignment of MQTTAsync_connectData"]
-        [::std::mem::align_of::<MQTTAsync_connectData>() - 8usize];
-    ["Offset of field: MQTTAsync_connectData::struct_id"]
-        [::std::mem::offset_of!(MQTTAsync_connectData, struct_id) - 0usize];
-    ["Offset of field: MQTTAsync_connectData::struct_version"]
-        [::std::mem::offset_of!(MQTTAsync_connectData, struct_version) - 4usize];
-    ["Offset of field: MQTTAsync_connectData::username"]
-        [::std::mem::offset_of!(MQTTAsync_connectData, username) - 8usize];
-    ["Offset of field: MQTTAsync_connectData::binarypwd"]
-        [::std::mem::offset_of!(MQTTAsync_connectData, binarypwd) - 16usize];
-};
+#[test]
+fn bindgen_test_layout_MQTTAsync_connectData__bindgen_ty_1() {
+    const UNINIT: ::std::mem::MaybeUninit<MQTTAsync_connectData__bindgen_ty_1> =
+        ::std::mem::MaybeUninit::uninit();
+    let ptr = UNINIT.as_ptr();
+    assert_eq!(
+        ::std::mem::size_of::<MQTTAsync_connectData__bindgen_ty_1>(),
+        16usize,
+        "Size of MQTTAsync_connectData__bindgen_ty_1"
+    );
+    assert_eq!(
+        ::std::mem::align_of::<MQTTAsync_connectData__bindgen_ty_1>(),
+        8usize,
+        "Alignment of MQTTAsync_connectData__bindgen_ty_1"
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).len) as usize - ptr as usize },
+        0usize,
+        "Offset of field: MQTTAsync_connectData__bindgen_ty_1::len"
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).data) as usize - ptr as usize },
+        8usize,
+        "Offset of field: MQTTAsync_connectData__bindgen_ty_1::data"
+    );
+}
+#[test]
+fn bindgen_test_layout_MQTTAsync_connectData() {
+    const UNINIT: ::std::mem::MaybeUninit<MQTTAsync_connectData> =
+        ::std::mem::MaybeUninit::uninit();
+    let ptr = UNINIT.as_ptr();
+    assert_eq!(
+        ::std::mem::size_of::<MQTTAsync_connectData>(),
+        32usize,
+        "Size of MQTTAsync_connectData"
+    );
+    assert_eq!(
+        ::std::mem::align_of::<MQTTAsync_connectData>(),
+        8usize,
+        "Alignment of MQTTAsync_connectData"
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).struct_id) as usize - ptr as usize },
+        0usize,
+        "Offset of field: MQTTAsync_connectData::struct_id"
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).struct_version) as usize - ptr as usize },
+        4usize,
+        "Offset of field: MQTTAsync_connectData::struct_version"
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).username) as usize - ptr as usize },
+        8usize,
+        "Offset of field: MQTTAsync_connectData::username"
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).binarypwd) as usize - ptr as usize },
+        16usize,
+        "Offset of field: MQTTAsync_connectData::binarypwd"
+    );
+}
 pub type MQTTAsync_updateConnectOptions = ::std::option::Option<
     unsafe extern "C" fn(
         context: *mut ::std::os::raw::c_void,
         data: *mut MQTTAsync_connectData,
     ) -> ::std::os::raw::c_int,
 >;
-unsafe extern "C" {
+extern "C" {
     pub fn MQTTAsync_setUpdateConnectOptions(
         handle: MQTTAsync,
         context: *mut ::std::os::raw::c_void,
         co: MQTTAsync_updateConnectOptions,
     ) -> ::std::os::raw::c_int;
 }
-unsafe extern "C" {
+extern "C" {
     pub fn MQTTAsync_setBeforePersistenceWrite(
         handle: MQTTAsync,
         context: *mut ::std::os::raw::c_void,
         co: MQTTPersistence_beforeWrite,
     ) -> ::std::os::raw::c_int;
 }
-unsafe extern "C" {
+extern "C" {
     pub fn MQTTAsync_setAfterPersistenceRead(
         handle: MQTTAsync,
         context: *mut ::std::os::raw::c_void,
@@ -1426,18 +1736,37 @@ pub struct MQTTAsync_failureData {
     pub code: ::std::os::raw::c_int,
     pub message: *const ::std::os::raw::c_char,
 }
-#[allow(clippy::unnecessary_operation, clippy::identity_op)]
-const _: () = {
-    ["Size of MQTTAsync_failureData"][::std::mem::size_of::<MQTTAsync_failureData>() - 16usize];
-    ["Alignment of MQTTAsync_failureData"]
-        [::std::mem::align_of::<MQTTAsync_failureData>() - 8usize];
-    ["Offset of field: MQTTAsync_failureData::token"]
-        [::std::mem::offset_of!(MQTTAsync_failureData, token) - 0usize];
-    ["Offset of field: MQTTAsync_failureData::code"]
-        [::std::mem::offset_of!(MQTTAsync_failureData, code) - 4usize];
-    ["Offset of field: MQTTAsync_failureData::message"]
-        [::std::mem::offset_of!(MQTTAsync_failureData, message) - 8usize];
-};
+#[test]
+fn bindgen_test_layout_MQTTAsync_failureData() {
+    const UNINIT: ::std::mem::MaybeUninit<MQTTAsync_failureData> =
+        ::std::mem::MaybeUninit::uninit();
+    let ptr = UNINIT.as_ptr();
+    assert_eq!(
+        ::std::mem::size_of::<MQTTAsync_failureData>(),
+        16usize,
+        "Size of MQTTAsync_failureData"
+    );
+    assert_eq!(
+        ::std::mem::align_of::<MQTTAsync_failureData>(),
+        8usize,
+        "Alignment of MQTTAsync_failureData"
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).token) as usize - ptr as usize },
+        0usize,
+        "Offset of field: MQTTAsync_failureData::token"
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).code) as usize - ptr as usize },
+        4usize,
+        "Offset of field: MQTTAsync_failureData::code"
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).message) as usize - ptr as usize },
+        8usize,
+        "Offset of field: MQTTAsync_failureData::message"
+    );
+}
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
 pub struct MQTTAsync_failureData5 {
@@ -1450,28 +1779,62 @@ pub struct MQTTAsync_failureData5 {
     pub message: *const ::std::os::raw::c_char,
     pub packet_type: ::std::os::raw::c_int,
 }
-#[allow(clippy::unnecessary_operation, clippy::identity_op)]
-const _: () = {
-    ["Size of MQTTAsync_failureData5"][::std::mem::size_of::<MQTTAsync_failureData5>() - 64usize];
-    ["Alignment of MQTTAsync_failureData5"]
-        [::std::mem::align_of::<MQTTAsync_failureData5>() - 8usize];
-    ["Offset of field: MQTTAsync_failureData5::struct_id"]
-        [::std::mem::offset_of!(MQTTAsync_failureData5, struct_id) - 0usize];
-    ["Offset of field: MQTTAsync_failureData5::struct_version"]
-        [::std::mem::offset_of!(MQTTAsync_failureData5, struct_version) - 4usize];
-    ["Offset of field: MQTTAsync_failureData5::token"]
-        [::std::mem::offset_of!(MQTTAsync_failureData5, token) - 8usize];
-    ["Offset of field: MQTTAsync_failureData5::reasonCode"]
-        [::std::mem::offset_of!(MQTTAsync_failureData5, reasonCode) - 12usize];
-    ["Offset of field: MQTTAsync_failureData5::properties"]
-        [::std::mem::offset_of!(MQTTAsync_failureData5, properties) - 16usize];
-    ["Offset of field: MQTTAsync_failureData5::code"]
-        [::std::mem::offset_of!(MQTTAsync_failureData5, code) - 40usize];
-    ["Offset of field: MQTTAsync_failureData5::message"]
-        [::std::mem::offset_of!(MQTTAsync_failureData5, message) - 48usize];
-    ["Offset of field: MQTTAsync_failureData5::packet_type"]
-        [::std::mem::offset_of!(MQTTAsync_failureData5, packet_type) - 56usize];
-};
+#[test]
+fn bindgen_test_layout_MQTTAsync_failureData5() {
+    const UNINIT: ::std::mem::MaybeUninit<MQTTAsync_failureData5> =
+        ::std::mem::MaybeUninit::uninit();
+    let ptr = UNINIT.as_ptr();
+    assert_eq!(
+        ::std::mem::size_of::<MQTTAsync_failureData5>(),
+        64usize,
+        "Size of MQTTAsync_failureData5"
+    );
+    assert_eq!(
+        ::std::mem::align_of::<MQTTAsync_failureData5>(),
+        8usize,
+        "Alignment of MQTTAsync_failureData5"
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).struct_id) as usize - ptr as usize },
+        0usize,
+        "Offset of field: MQTTAsync_failureData5::struct_id"
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).struct_version) as usize - ptr as usize },
+        4usize,
+        "Offset of field: MQTTAsync_failureData5::struct_version"
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).token) as usize - ptr as usize },
+        8usize,
+        "Offset of field: MQTTAsync_failureData5::token"
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).reasonCode) as usize - ptr as usize },
+        12usize,
+        "Offset of field: MQTTAsync_failureData5::reasonCode"
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).properties) as usize - ptr as usize },
+        16usize,
+        "Offset of field: MQTTAsync_failureData5::properties"
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).code) as usize - ptr as usize },
+        40usize,
+        "Offset of field: MQTTAsync_failureData5::code"
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).message) as usize - ptr as usize },
+        48usize,
+        "Offset of field: MQTTAsync_failureData5::message"
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).packet_type) as usize - ptr as usize },
+        56usize,
+        "Offset of field: MQTTAsync_failureData5::packet_type"
+    );
+}
 #[repr(C)]
 #[derive(Copy, Clone)]
 pub struct MQTTAsync_successData {
@@ -1492,22 +1855,32 @@ pub struct MQTTAsync_successData__bindgen_ty_1__bindgen_ty_1 {
     pub message: MQTTAsync_message,
     pub destinationName: *mut ::std::os::raw::c_char,
 }
-#[allow(clippy::unnecessary_operation, clippy::identity_op)]
-const _: () = {
-    ["Size of MQTTAsync_successData__bindgen_ty_1__bindgen_ty_1"]
-        [::std::mem::size_of::<MQTTAsync_successData__bindgen_ty_1__bindgen_ty_1>() - 72usize];
-    ["Alignment of MQTTAsync_successData__bindgen_ty_1__bindgen_ty_1"]
-        [::std::mem::align_of::<MQTTAsync_successData__bindgen_ty_1__bindgen_ty_1>() - 8usize];
-    ["Offset of field: MQTTAsync_successData__bindgen_ty_1__bindgen_ty_1::message"][::std::mem::offset_of!(
-        MQTTAsync_successData__bindgen_ty_1__bindgen_ty_1,
-        message
-    ) - 0usize];
-    ["Offset of field: MQTTAsync_successData__bindgen_ty_1__bindgen_ty_1::destinationName"][::std::mem::offset_of!(
-        MQTTAsync_successData__bindgen_ty_1__bindgen_ty_1,
-        destinationName
-    )
-        - 64usize];
-};
+#[test]
+fn bindgen_test_layout_MQTTAsync_successData__bindgen_ty_1__bindgen_ty_1() {
+    const UNINIT: ::std::mem::MaybeUninit<MQTTAsync_successData__bindgen_ty_1__bindgen_ty_1> =
+        ::std::mem::MaybeUninit::uninit();
+    let ptr = UNINIT.as_ptr();
+    assert_eq!(
+        ::std::mem::size_of::<MQTTAsync_successData__bindgen_ty_1__bindgen_ty_1>(),
+        72usize,
+        "Size of MQTTAsync_successData__bindgen_ty_1__bindgen_ty_1"
+    );
+    assert_eq!(
+        ::std::mem::align_of::<MQTTAsync_successData__bindgen_ty_1__bindgen_ty_1>(),
+        8usize,
+        "Alignment of MQTTAsync_successData__bindgen_ty_1__bindgen_ty_1"
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).message) as usize - ptr as usize },
+        0usize,
+        "Offset of field: MQTTAsync_successData__bindgen_ty_1__bindgen_ty_1::message"
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).destinationName) as usize - ptr as usize },
+        64usize,
+        "Offset of field: MQTTAsync_successData__bindgen_ty_1__bindgen_ty_1::destinationName"
+    );
+}
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
 pub struct MQTTAsync_successData__bindgen_ty_1__bindgen_ty_2 {
@@ -1515,51 +1888,99 @@ pub struct MQTTAsync_successData__bindgen_ty_1__bindgen_ty_2 {
     pub MQTTVersion: ::std::os::raw::c_int,
     pub sessionPresent: ::std::os::raw::c_int,
 }
-#[allow(clippy::unnecessary_operation, clippy::identity_op)]
-const _: () = {
-    ["Size of MQTTAsync_successData__bindgen_ty_1__bindgen_ty_2"]
-        [::std::mem::size_of::<MQTTAsync_successData__bindgen_ty_1__bindgen_ty_2>() - 16usize];
-    ["Alignment of MQTTAsync_successData__bindgen_ty_1__bindgen_ty_2"]
-        [::std::mem::align_of::<MQTTAsync_successData__bindgen_ty_1__bindgen_ty_2>() - 8usize];
-    ["Offset of field: MQTTAsync_successData__bindgen_ty_1__bindgen_ty_2::serverURI"][::std::mem::offset_of!(
-        MQTTAsync_successData__bindgen_ty_1__bindgen_ty_2,
-        serverURI
-    ) - 0usize];
-    ["Offset of field: MQTTAsync_successData__bindgen_ty_1__bindgen_ty_2::MQTTVersion"][::std::mem::offset_of!(
-        MQTTAsync_successData__bindgen_ty_1__bindgen_ty_2,
-        MQTTVersion
-    ) - 8usize];
-    ["Offset of field: MQTTAsync_successData__bindgen_ty_1__bindgen_ty_2::sessionPresent"][::std::mem::offset_of!(
-        MQTTAsync_successData__bindgen_ty_1__bindgen_ty_2,
-        sessionPresent
-    )
-        - 12usize];
-};
-#[allow(clippy::unnecessary_operation, clippy::identity_op)]
-const _: () = {
-    ["Size of MQTTAsync_successData__bindgen_ty_1"]
-        [::std::mem::size_of::<MQTTAsync_successData__bindgen_ty_1>() - 72usize];
-    ["Alignment of MQTTAsync_successData__bindgen_ty_1"]
-        [::std::mem::align_of::<MQTTAsync_successData__bindgen_ty_1>() - 8usize];
-    ["Offset of field: MQTTAsync_successData__bindgen_ty_1::qos"]
-        [::std::mem::offset_of!(MQTTAsync_successData__bindgen_ty_1, qos) - 0usize];
-    ["Offset of field: MQTTAsync_successData__bindgen_ty_1::qosList"]
-        [::std::mem::offset_of!(MQTTAsync_successData__bindgen_ty_1, qosList) - 0usize];
-    ["Offset of field: MQTTAsync_successData__bindgen_ty_1::pub_"]
-        [::std::mem::offset_of!(MQTTAsync_successData__bindgen_ty_1, pub_) - 0usize];
-    ["Offset of field: MQTTAsync_successData__bindgen_ty_1::connect"]
-        [::std::mem::offset_of!(MQTTAsync_successData__bindgen_ty_1, connect) - 0usize];
-};
-#[allow(clippy::unnecessary_operation, clippy::identity_op)]
-const _: () = {
-    ["Size of MQTTAsync_successData"][::std::mem::size_of::<MQTTAsync_successData>() - 80usize];
-    ["Alignment of MQTTAsync_successData"]
-        [::std::mem::align_of::<MQTTAsync_successData>() - 8usize];
-    ["Offset of field: MQTTAsync_successData::token"]
-        [::std::mem::offset_of!(MQTTAsync_successData, token) - 0usize];
-    ["Offset of field: MQTTAsync_successData::alt"]
-        [::std::mem::offset_of!(MQTTAsync_successData, alt) - 8usize];
-};
+#[test]
+fn bindgen_test_layout_MQTTAsync_successData__bindgen_ty_1__bindgen_ty_2() {
+    const UNINIT: ::std::mem::MaybeUninit<MQTTAsync_successData__bindgen_ty_1__bindgen_ty_2> =
+        ::std::mem::MaybeUninit::uninit();
+    let ptr = UNINIT.as_ptr();
+    assert_eq!(
+        ::std::mem::size_of::<MQTTAsync_successData__bindgen_ty_1__bindgen_ty_2>(),
+        16usize,
+        "Size of MQTTAsync_successData__bindgen_ty_1__bindgen_ty_2"
+    );
+    assert_eq!(
+        ::std::mem::align_of::<MQTTAsync_successData__bindgen_ty_1__bindgen_ty_2>(),
+        8usize,
+        "Alignment of MQTTAsync_successData__bindgen_ty_1__bindgen_ty_2"
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).serverURI) as usize - ptr as usize },
+        0usize,
+        "Offset of field: MQTTAsync_successData__bindgen_ty_1__bindgen_ty_2::serverURI"
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).MQTTVersion) as usize - ptr as usize },
+        8usize,
+        "Offset of field: MQTTAsync_successData__bindgen_ty_1__bindgen_ty_2::MQTTVersion"
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).sessionPresent) as usize - ptr as usize },
+        12usize,
+        "Offset of field: MQTTAsync_successData__bindgen_ty_1__bindgen_ty_2::sessionPresent"
+    );
+}
+#[test]
+fn bindgen_test_layout_MQTTAsync_successData__bindgen_ty_1() {
+    const UNINIT: ::std::mem::MaybeUninit<MQTTAsync_successData__bindgen_ty_1> =
+        ::std::mem::MaybeUninit::uninit();
+    let ptr = UNINIT.as_ptr();
+    assert_eq!(
+        ::std::mem::size_of::<MQTTAsync_successData__bindgen_ty_1>(),
+        72usize,
+        "Size of MQTTAsync_successData__bindgen_ty_1"
+    );
+    assert_eq!(
+        ::std::mem::align_of::<MQTTAsync_successData__bindgen_ty_1>(),
+        8usize,
+        "Alignment of MQTTAsync_successData__bindgen_ty_1"
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).qos) as usize - ptr as usize },
+        0usize,
+        "Offset of field: MQTTAsync_successData__bindgen_ty_1::qos"
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).qosList) as usize - ptr as usize },
+        0usize,
+        "Offset of field: MQTTAsync_successData__bindgen_ty_1::qosList"
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).pub_) as usize - ptr as usize },
+        0usize,
+        "Offset of field: MQTTAsync_successData__bindgen_ty_1::pub_"
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).connect) as usize - ptr as usize },
+        0usize,
+        "Offset of field: MQTTAsync_successData__bindgen_ty_1::connect"
+    );
+}
+#[test]
+fn bindgen_test_layout_MQTTAsync_successData() {
+    const UNINIT: ::std::mem::MaybeUninit<MQTTAsync_successData> =
+        ::std::mem::MaybeUninit::uninit();
+    let ptr = UNINIT.as_ptr();
+    assert_eq!(
+        ::std::mem::size_of::<MQTTAsync_successData>(),
+        80usize,
+        "Size of MQTTAsync_successData"
+    );
+    assert_eq!(
+        ::std::mem::align_of::<MQTTAsync_successData>(),
+        8usize,
+        "Alignment of MQTTAsync_successData"
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).token) as usize - ptr as usize },
+        0usize,
+        "Offset of field: MQTTAsync_successData::token"
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).alt) as usize - ptr as usize },
+        8usize,
+        "Offset of field: MQTTAsync_successData::alt"
+    );
+}
 #[repr(C)]
 #[derive(Copy, Clone)]
 pub struct MQTTAsync_successData5 {
@@ -1584,45 +2005,64 @@ pub struct MQTTAsync_successData5__bindgen_ty_1__bindgen_ty_1 {
     pub reasonCodeCount: ::std::os::raw::c_int,
     pub reasonCodes: *mut MQTTReasonCodes,
 }
-#[allow(clippy::unnecessary_operation, clippy::identity_op)]
-const _: () = {
-    ["Size of MQTTAsync_successData5__bindgen_ty_1__bindgen_ty_1"]
-        [::std::mem::size_of::<MQTTAsync_successData5__bindgen_ty_1__bindgen_ty_1>() - 16usize];
-    ["Alignment of MQTTAsync_successData5__bindgen_ty_1__bindgen_ty_1"]
-        [::std::mem::align_of::<MQTTAsync_successData5__bindgen_ty_1__bindgen_ty_1>() - 8usize];
-    ["Offset of field: MQTTAsync_successData5__bindgen_ty_1__bindgen_ty_1::reasonCodeCount"][::std::mem::offset_of!(
-        MQTTAsync_successData5__bindgen_ty_1__bindgen_ty_1,
-        reasonCodeCount
-    )
-        - 0usize];
-    ["Offset of field: MQTTAsync_successData5__bindgen_ty_1__bindgen_ty_1::reasonCodes"][::std::mem::offset_of!(
-        MQTTAsync_successData5__bindgen_ty_1__bindgen_ty_1,
-        reasonCodes
-    )
-        - 8usize];
-};
+#[test]
+fn bindgen_test_layout_MQTTAsync_successData5__bindgen_ty_1__bindgen_ty_1() {
+    const UNINIT: ::std::mem::MaybeUninit<MQTTAsync_successData5__bindgen_ty_1__bindgen_ty_1> =
+        ::std::mem::MaybeUninit::uninit();
+    let ptr = UNINIT.as_ptr();
+    assert_eq!(
+        ::std::mem::size_of::<MQTTAsync_successData5__bindgen_ty_1__bindgen_ty_1>(),
+        16usize,
+        "Size of MQTTAsync_successData5__bindgen_ty_1__bindgen_ty_1"
+    );
+    assert_eq!(
+        ::std::mem::align_of::<MQTTAsync_successData5__bindgen_ty_1__bindgen_ty_1>(),
+        8usize,
+        "Alignment of MQTTAsync_successData5__bindgen_ty_1__bindgen_ty_1"
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).reasonCodeCount) as usize - ptr as usize },
+        0usize,
+        "Offset of field: MQTTAsync_successData5__bindgen_ty_1__bindgen_ty_1::reasonCodeCount"
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).reasonCodes) as usize - ptr as usize },
+        8usize,
+        "Offset of field: MQTTAsync_successData5__bindgen_ty_1__bindgen_ty_1::reasonCodes"
+    );
+}
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
 pub struct MQTTAsync_successData5__bindgen_ty_1__bindgen_ty_2 {
     pub message: MQTTAsync_message,
     pub destinationName: *mut ::std::os::raw::c_char,
 }
-#[allow(clippy::unnecessary_operation, clippy::identity_op)]
-const _: () = {
-    ["Size of MQTTAsync_successData5__bindgen_ty_1__bindgen_ty_2"]
-        [::std::mem::size_of::<MQTTAsync_successData5__bindgen_ty_1__bindgen_ty_2>() - 72usize];
-    ["Alignment of MQTTAsync_successData5__bindgen_ty_1__bindgen_ty_2"]
-        [::std::mem::align_of::<MQTTAsync_successData5__bindgen_ty_1__bindgen_ty_2>() - 8usize];
-    ["Offset of field: MQTTAsync_successData5__bindgen_ty_1__bindgen_ty_2::message"][::std::mem::offset_of!(
-        MQTTAsync_successData5__bindgen_ty_1__bindgen_ty_2,
-        message
-    ) - 0usize];
-    ["Offset of field: MQTTAsync_successData5__bindgen_ty_1__bindgen_ty_2::destinationName"][::std::mem::offset_of!(
-        MQTTAsync_successData5__bindgen_ty_1__bindgen_ty_2,
-        destinationName
-    )
-        - 64usize];
-};
+#[test]
+fn bindgen_test_layout_MQTTAsync_successData5__bindgen_ty_1__bindgen_ty_2() {
+    const UNINIT: ::std::mem::MaybeUninit<MQTTAsync_successData5__bindgen_ty_1__bindgen_ty_2> =
+        ::std::mem::MaybeUninit::uninit();
+    let ptr = UNINIT.as_ptr();
+    assert_eq!(
+        ::std::mem::size_of::<MQTTAsync_successData5__bindgen_ty_1__bindgen_ty_2>(),
+        72usize,
+        "Size of MQTTAsync_successData5__bindgen_ty_1__bindgen_ty_2"
+    );
+    assert_eq!(
+        ::std::mem::align_of::<MQTTAsync_successData5__bindgen_ty_1__bindgen_ty_2>(),
+        8usize,
+        "Alignment of MQTTAsync_successData5__bindgen_ty_1__bindgen_ty_2"
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).message) as usize - ptr as usize },
+        0usize,
+        "Offset of field: MQTTAsync_successData5__bindgen_ty_1__bindgen_ty_2::message"
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).destinationName) as usize - ptr as usize },
+        64usize,
+        "Offset of field: MQTTAsync_successData5__bindgen_ty_1__bindgen_ty_2::destinationName"
+    );
+}
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
 pub struct MQTTAsync_successData5__bindgen_ty_1__bindgen_ty_3 {
@@ -1630,83 +2070,151 @@ pub struct MQTTAsync_successData5__bindgen_ty_1__bindgen_ty_3 {
     pub MQTTVersion: ::std::os::raw::c_int,
     pub sessionPresent: ::std::os::raw::c_int,
 }
-#[allow(clippy::unnecessary_operation, clippy::identity_op)]
-const _: () = {
-    ["Size of MQTTAsync_successData5__bindgen_ty_1__bindgen_ty_3"]
-        [::std::mem::size_of::<MQTTAsync_successData5__bindgen_ty_1__bindgen_ty_3>() - 16usize];
-    ["Alignment of MQTTAsync_successData5__bindgen_ty_1__bindgen_ty_3"]
-        [::std::mem::align_of::<MQTTAsync_successData5__bindgen_ty_1__bindgen_ty_3>() - 8usize];
-    ["Offset of field: MQTTAsync_successData5__bindgen_ty_1__bindgen_ty_3::serverURI"][::std::mem::offset_of!(
-        MQTTAsync_successData5__bindgen_ty_1__bindgen_ty_3,
-        serverURI
-    ) - 0usize];
-    ["Offset of field: MQTTAsync_successData5__bindgen_ty_1__bindgen_ty_3::MQTTVersion"][::std::mem::offset_of!(
-        MQTTAsync_successData5__bindgen_ty_1__bindgen_ty_3,
-        MQTTVersion
-    )
-        - 8usize];
-    ["Offset of field: MQTTAsync_successData5__bindgen_ty_1__bindgen_ty_3::sessionPresent"][::std::mem::offset_of!(
-        MQTTAsync_successData5__bindgen_ty_1__bindgen_ty_3,
-        sessionPresent
-    )
-        - 12usize];
-};
+#[test]
+fn bindgen_test_layout_MQTTAsync_successData5__bindgen_ty_1__bindgen_ty_3() {
+    const UNINIT: ::std::mem::MaybeUninit<MQTTAsync_successData5__bindgen_ty_1__bindgen_ty_3> =
+        ::std::mem::MaybeUninit::uninit();
+    let ptr = UNINIT.as_ptr();
+    assert_eq!(
+        ::std::mem::size_of::<MQTTAsync_successData5__bindgen_ty_1__bindgen_ty_3>(),
+        16usize,
+        "Size of MQTTAsync_successData5__bindgen_ty_1__bindgen_ty_3"
+    );
+    assert_eq!(
+        ::std::mem::align_of::<MQTTAsync_successData5__bindgen_ty_1__bindgen_ty_3>(),
+        8usize,
+        "Alignment of MQTTAsync_successData5__bindgen_ty_1__bindgen_ty_3"
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).serverURI) as usize - ptr as usize },
+        0usize,
+        "Offset of field: MQTTAsync_successData5__bindgen_ty_1__bindgen_ty_3::serverURI"
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).MQTTVersion) as usize - ptr as usize },
+        8usize,
+        "Offset of field: MQTTAsync_successData5__bindgen_ty_1__bindgen_ty_3::MQTTVersion"
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).sessionPresent) as usize - ptr as usize },
+        12usize,
+        "Offset of field: MQTTAsync_successData5__bindgen_ty_1__bindgen_ty_3::sessionPresent"
+    );
+}
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
 pub struct MQTTAsync_successData5__bindgen_ty_1__bindgen_ty_4 {
     pub reasonCodeCount: ::std::os::raw::c_int,
     pub reasonCodes: *mut MQTTReasonCodes,
 }
-#[allow(clippy::unnecessary_operation, clippy::identity_op)]
-const _: () = {
-    ["Size of MQTTAsync_successData5__bindgen_ty_1__bindgen_ty_4"]
-        [::std::mem::size_of::<MQTTAsync_successData5__bindgen_ty_1__bindgen_ty_4>() - 16usize];
-    ["Alignment of MQTTAsync_successData5__bindgen_ty_1__bindgen_ty_4"]
-        [::std::mem::align_of::<MQTTAsync_successData5__bindgen_ty_1__bindgen_ty_4>() - 8usize];
-    ["Offset of field: MQTTAsync_successData5__bindgen_ty_1__bindgen_ty_4::reasonCodeCount"][::std::mem::offset_of!(
-        MQTTAsync_successData5__bindgen_ty_1__bindgen_ty_4,
-        reasonCodeCount
-    )
-        - 0usize];
-    ["Offset of field: MQTTAsync_successData5__bindgen_ty_1__bindgen_ty_4::reasonCodes"][::std::mem::offset_of!(
-        MQTTAsync_successData5__bindgen_ty_1__bindgen_ty_4,
-        reasonCodes
-    )
-        - 8usize];
-};
-#[allow(clippy::unnecessary_operation, clippy::identity_op)]
-const _: () = {
-    ["Size of MQTTAsync_successData5__bindgen_ty_1"]
-        [::std::mem::size_of::<MQTTAsync_successData5__bindgen_ty_1>() - 72usize];
-    ["Alignment of MQTTAsync_successData5__bindgen_ty_1"]
-        [::std::mem::align_of::<MQTTAsync_successData5__bindgen_ty_1>() - 8usize];
-    ["Offset of field: MQTTAsync_successData5__bindgen_ty_1::sub"]
-        [::std::mem::offset_of!(MQTTAsync_successData5__bindgen_ty_1, sub) - 0usize];
-    ["Offset of field: MQTTAsync_successData5__bindgen_ty_1::pub_"]
-        [::std::mem::offset_of!(MQTTAsync_successData5__bindgen_ty_1, pub_) - 0usize];
-    ["Offset of field: MQTTAsync_successData5__bindgen_ty_1::connect"]
-        [::std::mem::offset_of!(MQTTAsync_successData5__bindgen_ty_1, connect) - 0usize];
-    ["Offset of field: MQTTAsync_successData5__bindgen_ty_1::unsub"]
-        [::std::mem::offset_of!(MQTTAsync_successData5__bindgen_ty_1, unsub) - 0usize];
-};
-#[allow(clippy::unnecessary_operation, clippy::identity_op)]
-const _: () = {
-    ["Size of MQTTAsync_successData5"][::std::mem::size_of::<MQTTAsync_successData5>() - 112usize];
-    ["Alignment of MQTTAsync_successData5"]
-        [::std::mem::align_of::<MQTTAsync_successData5>() - 8usize];
-    ["Offset of field: MQTTAsync_successData5::struct_id"]
-        [::std::mem::offset_of!(MQTTAsync_successData5, struct_id) - 0usize];
-    ["Offset of field: MQTTAsync_successData5::struct_version"]
-        [::std::mem::offset_of!(MQTTAsync_successData5, struct_version) - 4usize];
-    ["Offset of field: MQTTAsync_successData5::token"]
-        [::std::mem::offset_of!(MQTTAsync_successData5, token) - 8usize];
-    ["Offset of field: MQTTAsync_successData5::reasonCode"]
-        [::std::mem::offset_of!(MQTTAsync_successData5, reasonCode) - 12usize];
-    ["Offset of field: MQTTAsync_successData5::properties"]
-        [::std::mem::offset_of!(MQTTAsync_successData5, properties) - 16usize];
-    ["Offset of field: MQTTAsync_successData5::alt"]
-        [::std::mem::offset_of!(MQTTAsync_successData5, alt) - 40usize];
-};
+#[test]
+fn bindgen_test_layout_MQTTAsync_successData5__bindgen_ty_1__bindgen_ty_4() {
+    const UNINIT: ::std::mem::MaybeUninit<MQTTAsync_successData5__bindgen_ty_1__bindgen_ty_4> =
+        ::std::mem::MaybeUninit::uninit();
+    let ptr = UNINIT.as_ptr();
+    assert_eq!(
+        ::std::mem::size_of::<MQTTAsync_successData5__bindgen_ty_1__bindgen_ty_4>(),
+        16usize,
+        "Size of MQTTAsync_successData5__bindgen_ty_1__bindgen_ty_4"
+    );
+    assert_eq!(
+        ::std::mem::align_of::<MQTTAsync_successData5__bindgen_ty_1__bindgen_ty_4>(),
+        8usize,
+        "Alignment of MQTTAsync_successData5__bindgen_ty_1__bindgen_ty_4"
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).reasonCodeCount) as usize - ptr as usize },
+        0usize,
+        "Offset of field: MQTTAsync_successData5__bindgen_ty_1__bindgen_ty_4::reasonCodeCount"
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).reasonCodes) as usize - ptr as usize },
+        8usize,
+        "Offset of field: MQTTAsync_successData5__bindgen_ty_1__bindgen_ty_4::reasonCodes"
+    );
+}
+#[test]
+fn bindgen_test_layout_MQTTAsync_successData5__bindgen_ty_1() {
+    const UNINIT: ::std::mem::MaybeUninit<MQTTAsync_successData5__bindgen_ty_1> =
+        ::std::mem::MaybeUninit::uninit();
+    let ptr = UNINIT.as_ptr();
+    assert_eq!(
+        ::std::mem::size_of::<MQTTAsync_successData5__bindgen_ty_1>(),
+        72usize,
+        "Size of MQTTAsync_successData5__bindgen_ty_1"
+    );
+    assert_eq!(
+        ::std::mem::align_of::<MQTTAsync_successData5__bindgen_ty_1>(),
+        8usize,
+        "Alignment of MQTTAsync_successData5__bindgen_ty_1"
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).sub) as usize - ptr as usize },
+        0usize,
+        "Offset of field: MQTTAsync_successData5__bindgen_ty_1::sub"
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).pub_) as usize - ptr as usize },
+        0usize,
+        "Offset of field: MQTTAsync_successData5__bindgen_ty_1::pub_"
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).connect) as usize - ptr as usize },
+        0usize,
+        "Offset of field: MQTTAsync_successData5__bindgen_ty_1::connect"
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).unsub) as usize - ptr as usize },
+        0usize,
+        "Offset of field: MQTTAsync_successData5__bindgen_ty_1::unsub"
+    );
+}
+#[test]
+fn bindgen_test_layout_MQTTAsync_successData5() {
+    const UNINIT: ::std::mem::MaybeUninit<MQTTAsync_successData5> =
+        ::std::mem::MaybeUninit::uninit();
+    let ptr = UNINIT.as_ptr();
+    assert_eq!(
+        ::std::mem::size_of::<MQTTAsync_successData5>(),
+        112usize,
+        "Size of MQTTAsync_successData5"
+    );
+    assert_eq!(
+        ::std::mem::align_of::<MQTTAsync_successData5>(),
+        8usize,
+        "Alignment of MQTTAsync_successData5"
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).struct_id) as usize - ptr as usize },
+        0usize,
+        "Offset of field: MQTTAsync_successData5::struct_id"
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).struct_version) as usize - ptr as usize },
+        4usize,
+        "Offset of field: MQTTAsync_successData5::struct_version"
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).token) as usize - ptr as usize },
+        8usize,
+        "Offset of field: MQTTAsync_successData5::token"
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).reasonCode) as usize - ptr as usize },
+        12usize,
+        "Offset of field: MQTTAsync_successData5::reasonCode"
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).properties) as usize - ptr as usize },
+        16usize,
+        "Offset of field: MQTTAsync_successData5::properties"
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).alt) as usize - ptr as usize },
+        40usize,
+        "Offset of field: MQTTAsync_successData5::alt"
+    );
+}
 pub type MQTTAsync_onSuccess = ::std::option::Option<
     unsafe extern "C" fn(
         context: *mut ::std::os::raw::c_void,
@@ -1747,39 +2255,84 @@ pub struct MQTTAsync_responseOptions {
     pub subscribeOptionsCount: ::std::os::raw::c_int,
     pub subscribeOptionsList: *mut MQTTSubscribe_options,
 }
-#[allow(clippy::unnecessary_operation, clippy::identity_op)]
-const _: () = {
-    ["Size of MQTTAsync_responseOptions"]
-        [::std::mem::size_of::<MQTTAsync_responseOptions>() - 104usize];
-    ["Alignment of MQTTAsync_responseOptions"]
-        [::std::mem::align_of::<MQTTAsync_responseOptions>() - 8usize];
-    ["Offset of field: MQTTAsync_responseOptions::struct_id"]
-        [::std::mem::offset_of!(MQTTAsync_responseOptions, struct_id) - 0usize];
-    ["Offset of field: MQTTAsync_responseOptions::struct_version"]
-        [::std::mem::offset_of!(MQTTAsync_responseOptions, struct_version) - 4usize];
-    ["Offset of field: MQTTAsync_responseOptions::onSuccess"]
-        [::std::mem::offset_of!(MQTTAsync_responseOptions, onSuccess) - 8usize];
-    ["Offset of field: MQTTAsync_responseOptions::onFailure"]
-        [::std::mem::offset_of!(MQTTAsync_responseOptions, onFailure) - 16usize];
-    ["Offset of field: MQTTAsync_responseOptions::context"]
-        [::std::mem::offset_of!(MQTTAsync_responseOptions, context) - 24usize];
-    ["Offset of field: MQTTAsync_responseOptions::token"]
-        [::std::mem::offset_of!(MQTTAsync_responseOptions, token) - 32usize];
-    ["Offset of field: MQTTAsync_responseOptions::onSuccess5"]
-        [::std::mem::offset_of!(MQTTAsync_responseOptions, onSuccess5) - 40usize];
-    ["Offset of field: MQTTAsync_responseOptions::onFailure5"]
-        [::std::mem::offset_of!(MQTTAsync_responseOptions, onFailure5) - 48usize];
-    ["Offset of field: MQTTAsync_responseOptions::properties"]
-        [::std::mem::offset_of!(MQTTAsync_responseOptions, properties) - 56usize];
-    ["Offset of field: MQTTAsync_responseOptions::subscribeOptions"]
-        [::std::mem::offset_of!(MQTTAsync_responseOptions, subscribeOptions) - 80usize];
-    ["Offset of field: MQTTAsync_responseOptions::subscribeOptionsCount"]
-        [::std::mem::offset_of!(MQTTAsync_responseOptions, subscribeOptionsCount) - 92usize];
-    ["Offset of field: MQTTAsync_responseOptions::subscribeOptionsList"]
-        [::std::mem::offset_of!(MQTTAsync_responseOptions, subscribeOptionsList) - 96usize];
-};
+#[test]
+fn bindgen_test_layout_MQTTAsync_responseOptions() {
+    const UNINIT: ::std::mem::MaybeUninit<MQTTAsync_responseOptions> =
+        ::std::mem::MaybeUninit::uninit();
+    let ptr = UNINIT.as_ptr();
+    assert_eq!(
+        ::std::mem::size_of::<MQTTAsync_responseOptions>(),
+        104usize,
+        "Size of MQTTAsync_responseOptions"
+    );
+    assert_eq!(
+        ::std::mem::align_of::<MQTTAsync_responseOptions>(),
+        8usize,
+        "Alignment of MQTTAsync_responseOptions"
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).struct_id) as usize - ptr as usize },
+        0usize,
+        "Offset of field: MQTTAsync_responseOptions::struct_id"
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).struct_version) as usize - ptr as usize },
+        4usize,
+        "Offset of field: MQTTAsync_responseOptions::struct_version"
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).onSuccess) as usize - ptr as usize },
+        8usize,
+        "Offset of field: MQTTAsync_responseOptions::onSuccess"
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).onFailure) as usize - ptr as usize },
+        16usize,
+        "Offset of field: MQTTAsync_responseOptions::onFailure"
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).context) as usize - ptr as usize },
+        24usize,
+        "Offset of field: MQTTAsync_responseOptions::context"
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).token) as usize - ptr as usize },
+        32usize,
+        "Offset of field: MQTTAsync_responseOptions::token"
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).onSuccess5) as usize - ptr as usize },
+        40usize,
+        "Offset of field: MQTTAsync_responseOptions::onSuccess5"
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).onFailure5) as usize - ptr as usize },
+        48usize,
+        "Offset of field: MQTTAsync_responseOptions::onFailure5"
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).properties) as usize - ptr as usize },
+        56usize,
+        "Offset of field: MQTTAsync_responseOptions::properties"
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).subscribeOptions) as usize - ptr as usize },
+        80usize,
+        "Offset of field: MQTTAsync_responseOptions::subscribeOptions"
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).subscribeOptionsCount) as usize - ptr as usize },
+        92usize,
+        "Offset of field: MQTTAsync_responseOptions::subscribeOptionsCount"
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).subscribeOptionsList) as usize - ptr as usize },
+        96usize,
+        "Offset of field: MQTTAsync_responseOptions::subscribeOptionsList"
+    );
+}
 pub type MQTTAsync_callOptions = MQTTAsync_responseOptions;
-unsafe extern "C" {
+extern "C" {
     pub fn MQTTAsync_setCallbacks(
         handle: MQTTAsync,
         context: *mut ::std::os::raw::c_void,
@@ -1788,38 +2341,38 @@ unsafe extern "C" {
         dc: MQTTAsync_deliveryComplete,
     ) -> ::std::os::raw::c_int;
 }
-unsafe extern "C" {
+extern "C" {
     pub fn MQTTAsync_setConnectionLostCallback(
         handle: MQTTAsync,
         context: *mut ::std::os::raw::c_void,
         cl: MQTTAsync_connectionLost,
     ) -> ::std::os::raw::c_int;
 }
-unsafe extern "C" {
+extern "C" {
     pub fn MQTTAsync_setMessageArrivedCallback(
         handle: MQTTAsync,
         context: *mut ::std::os::raw::c_void,
         ma: MQTTAsync_messageArrived,
     ) -> ::std::os::raw::c_int;
 }
-unsafe extern "C" {
+extern "C" {
     pub fn MQTTAsync_setDeliveryCompleteCallback(
         handle: MQTTAsync,
         context: *mut ::std::os::raw::c_void,
         dc: MQTTAsync_deliveryComplete,
     ) -> ::std::os::raw::c_int;
 }
-unsafe extern "C" {
+extern "C" {
     pub fn MQTTAsync_setConnected(
         handle: MQTTAsync,
         context: *mut ::std::os::raw::c_void,
         co: MQTTAsync_connected,
     ) -> ::std::os::raw::c_int;
 }
-unsafe extern "C" {
+extern "C" {
     pub fn MQTTAsync_reconnect(handle: MQTTAsync) -> ::std::os::raw::c_int;
 }
-unsafe extern "C" {
+extern "C" {
     pub fn MQTTAsync_create(
         handle: *mut MQTTAsync,
         serverURI: *const ::std::os::raw::c_char,
@@ -1841,31 +2394,70 @@ pub struct MQTTAsync_createOptions {
     pub restoreMessages: ::std::os::raw::c_int,
     pub persistQoS0: ::std::os::raw::c_int,
 }
-#[allow(clippy::unnecessary_operation, clippy::identity_op)]
-const _: () = {
-    ["Size of MQTTAsync_createOptions"][::std::mem::size_of::<MQTTAsync_createOptions>() - 36usize];
-    ["Alignment of MQTTAsync_createOptions"]
-        [::std::mem::align_of::<MQTTAsync_createOptions>() - 4usize];
-    ["Offset of field: MQTTAsync_createOptions::struct_id"]
-        [::std::mem::offset_of!(MQTTAsync_createOptions, struct_id) - 0usize];
-    ["Offset of field: MQTTAsync_createOptions::struct_version"]
-        [::std::mem::offset_of!(MQTTAsync_createOptions, struct_version) - 4usize];
-    ["Offset of field: MQTTAsync_createOptions::sendWhileDisconnected"]
-        [::std::mem::offset_of!(MQTTAsync_createOptions, sendWhileDisconnected) - 8usize];
-    ["Offset of field: MQTTAsync_createOptions::maxBufferedMessages"]
-        [::std::mem::offset_of!(MQTTAsync_createOptions, maxBufferedMessages) - 12usize];
-    ["Offset of field: MQTTAsync_createOptions::MQTTVersion"]
-        [::std::mem::offset_of!(MQTTAsync_createOptions, MQTTVersion) - 16usize];
-    ["Offset of field: MQTTAsync_createOptions::allowDisconnectedSendAtAnyTime"]
-        [::std::mem::offset_of!(MQTTAsync_createOptions, allowDisconnectedSendAtAnyTime) - 20usize];
-    ["Offset of field: MQTTAsync_createOptions::deleteOldestMessages"]
-        [::std::mem::offset_of!(MQTTAsync_createOptions, deleteOldestMessages) - 24usize];
-    ["Offset of field: MQTTAsync_createOptions::restoreMessages"]
-        [::std::mem::offset_of!(MQTTAsync_createOptions, restoreMessages) - 28usize];
-    ["Offset of field: MQTTAsync_createOptions::persistQoS0"]
-        [::std::mem::offset_of!(MQTTAsync_createOptions, persistQoS0) - 32usize];
-};
-unsafe extern "C" {
+#[test]
+fn bindgen_test_layout_MQTTAsync_createOptions() {
+    const UNINIT: ::std::mem::MaybeUninit<MQTTAsync_createOptions> =
+        ::std::mem::MaybeUninit::uninit();
+    let ptr = UNINIT.as_ptr();
+    assert_eq!(
+        ::std::mem::size_of::<MQTTAsync_createOptions>(),
+        36usize,
+        "Size of MQTTAsync_createOptions"
+    );
+    assert_eq!(
+        ::std::mem::align_of::<MQTTAsync_createOptions>(),
+        4usize,
+        "Alignment of MQTTAsync_createOptions"
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).struct_id) as usize - ptr as usize },
+        0usize,
+        "Offset of field: MQTTAsync_createOptions::struct_id"
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).struct_version) as usize - ptr as usize },
+        4usize,
+        "Offset of field: MQTTAsync_createOptions::struct_version"
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).sendWhileDisconnected) as usize - ptr as usize },
+        8usize,
+        "Offset of field: MQTTAsync_createOptions::sendWhileDisconnected"
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).maxBufferedMessages) as usize - ptr as usize },
+        12usize,
+        "Offset of field: MQTTAsync_createOptions::maxBufferedMessages"
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).MQTTVersion) as usize - ptr as usize },
+        16usize,
+        "Offset of field: MQTTAsync_createOptions::MQTTVersion"
+    );
+    assert_eq!(
+        unsafe {
+            ::std::ptr::addr_of!((*ptr).allowDisconnectedSendAtAnyTime) as usize - ptr as usize
+        },
+        20usize,
+        "Offset of field: MQTTAsync_createOptions::allowDisconnectedSendAtAnyTime"
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).deleteOldestMessages) as usize - ptr as usize },
+        24usize,
+        "Offset of field: MQTTAsync_createOptions::deleteOldestMessages"
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).restoreMessages) as usize - ptr as usize },
+        28usize,
+        "Offset of field: MQTTAsync_createOptions::restoreMessages"
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).persistQoS0) as usize - ptr as usize },
+        32usize,
+        "Offset of field: MQTTAsync_createOptions::persistQoS0"
+    );
+}
+extern "C" {
     pub fn MQTTAsync_createWithOptions(
         handle: *mut MQTTAsync,
         serverURI: *const ::std::os::raw::c_char,
@@ -1892,37 +2484,83 @@ pub struct MQTTAsync_willOptions__bindgen_ty_1 {
     pub len: ::std::os::raw::c_int,
     pub data: *const ::std::os::raw::c_void,
 }
-#[allow(clippy::unnecessary_operation, clippy::identity_op)]
-const _: () = {
-    ["Size of MQTTAsync_willOptions__bindgen_ty_1"]
-        [::std::mem::size_of::<MQTTAsync_willOptions__bindgen_ty_1>() - 16usize];
-    ["Alignment of MQTTAsync_willOptions__bindgen_ty_1"]
-        [::std::mem::align_of::<MQTTAsync_willOptions__bindgen_ty_1>() - 8usize];
-    ["Offset of field: MQTTAsync_willOptions__bindgen_ty_1::len"]
-        [::std::mem::offset_of!(MQTTAsync_willOptions__bindgen_ty_1, len) - 0usize];
-    ["Offset of field: MQTTAsync_willOptions__bindgen_ty_1::data"]
-        [::std::mem::offset_of!(MQTTAsync_willOptions__bindgen_ty_1, data) - 8usize];
-};
-#[allow(clippy::unnecessary_operation, clippy::identity_op)]
-const _: () = {
-    ["Size of MQTTAsync_willOptions"][::std::mem::size_of::<MQTTAsync_willOptions>() - 48usize];
-    ["Alignment of MQTTAsync_willOptions"]
-        [::std::mem::align_of::<MQTTAsync_willOptions>() - 8usize];
-    ["Offset of field: MQTTAsync_willOptions::struct_id"]
-        [::std::mem::offset_of!(MQTTAsync_willOptions, struct_id) - 0usize];
-    ["Offset of field: MQTTAsync_willOptions::struct_version"]
-        [::std::mem::offset_of!(MQTTAsync_willOptions, struct_version) - 4usize];
-    ["Offset of field: MQTTAsync_willOptions::topicName"]
-        [::std::mem::offset_of!(MQTTAsync_willOptions, topicName) - 8usize];
-    ["Offset of field: MQTTAsync_willOptions::message"]
-        [::std::mem::offset_of!(MQTTAsync_willOptions, message) - 16usize];
-    ["Offset of field: MQTTAsync_willOptions::retained"]
-        [::std::mem::offset_of!(MQTTAsync_willOptions, retained) - 24usize];
-    ["Offset of field: MQTTAsync_willOptions::qos"]
-        [::std::mem::offset_of!(MQTTAsync_willOptions, qos) - 28usize];
-    ["Offset of field: MQTTAsync_willOptions::payload"]
-        [::std::mem::offset_of!(MQTTAsync_willOptions, payload) - 32usize];
-};
+#[test]
+fn bindgen_test_layout_MQTTAsync_willOptions__bindgen_ty_1() {
+    const UNINIT: ::std::mem::MaybeUninit<MQTTAsync_willOptions__bindgen_ty_1> =
+        ::std::mem::MaybeUninit::uninit();
+    let ptr = UNINIT.as_ptr();
+    assert_eq!(
+        ::std::mem::size_of::<MQTTAsync_willOptions__bindgen_ty_1>(),
+        16usize,
+        "Size of MQTTAsync_willOptions__bindgen_ty_1"
+    );
+    assert_eq!(
+        ::std::mem::align_of::<MQTTAsync_willOptions__bindgen_ty_1>(),
+        8usize,
+        "Alignment of MQTTAsync_willOptions__bindgen_ty_1"
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).len) as usize - ptr as usize },
+        0usize,
+        "Offset of field: MQTTAsync_willOptions__bindgen_ty_1::len"
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).data) as usize - ptr as usize },
+        8usize,
+        "Offset of field: MQTTAsync_willOptions__bindgen_ty_1::data"
+    );
+}
+#[test]
+fn bindgen_test_layout_MQTTAsync_willOptions() {
+    const UNINIT: ::std::mem::MaybeUninit<MQTTAsync_willOptions> =
+        ::std::mem::MaybeUninit::uninit();
+    let ptr = UNINIT.as_ptr();
+    assert_eq!(
+        ::std::mem::size_of::<MQTTAsync_willOptions>(),
+        48usize,
+        "Size of MQTTAsync_willOptions"
+    );
+    assert_eq!(
+        ::std::mem::align_of::<MQTTAsync_willOptions>(),
+        8usize,
+        "Alignment of MQTTAsync_willOptions"
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).struct_id) as usize - ptr as usize },
+        0usize,
+        "Offset of field: MQTTAsync_willOptions::struct_id"
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).struct_version) as usize - ptr as usize },
+        4usize,
+        "Offset of field: MQTTAsync_willOptions::struct_version"
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).topicName) as usize - ptr as usize },
+        8usize,
+        "Offset of field: MQTTAsync_willOptions::topicName"
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).message) as usize - ptr as usize },
+        16usize,
+        "Offset of field: MQTTAsync_willOptions::message"
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).retained) as usize - ptr as usize },
+        24usize,
+        "Offset of field: MQTTAsync_willOptions::retained"
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).qos) as usize - ptr as usize },
+        28usize,
+        "Offset of field: MQTTAsync_willOptions::qos"
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).payload) as usize - ptr as usize },
+        32usize,
+        "Offset of field: MQTTAsync_willOptions::payload"
+    );
+}
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
 pub struct MQTTAsync_SSLOptions {
@@ -1960,62 +2598,142 @@ pub struct MQTTAsync_SSLOptions {
     pub protos: *const ::std::os::raw::c_uchar,
     pub protos_len: ::std::os::raw::c_uint,
 }
-#[allow(clippy::unnecessary_operation, clippy::identity_op)]
-const _: () = {
-    ["Size of MQTTAsync_SSLOptions"][::std::mem::size_of::<MQTTAsync_SSLOptions>() - 128usize];
-    ["Alignment of MQTTAsync_SSLOptions"][::std::mem::align_of::<MQTTAsync_SSLOptions>() - 8usize];
-    ["Offset of field: MQTTAsync_SSLOptions::struct_id"]
-        [::std::mem::offset_of!(MQTTAsync_SSLOptions, struct_id) - 0usize];
-    ["Offset of field: MQTTAsync_SSLOptions::struct_version"]
-        [::std::mem::offset_of!(MQTTAsync_SSLOptions, struct_version) - 4usize];
-    ["Offset of field: MQTTAsync_SSLOptions::trustStore"]
-        [::std::mem::offset_of!(MQTTAsync_SSLOptions, trustStore) - 8usize];
-    ["Offset of field: MQTTAsync_SSLOptions::keyStore"]
-        [::std::mem::offset_of!(MQTTAsync_SSLOptions, keyStore) - 16usize];
-    ["Offset of field: MQTTAsync_SSLOptions::privateKey"]
-        [::std::mem::offset_of!(MQTTAsync_SSLOptions, privateKey) - 24usize];
-    ["Offset of field: MQTTAsync_SSLOptions::privateKeyPassword"]
-        [::std::mem::offset_of!(MQTTAsync_SSLOptions, privateKeyPassword) - 32usize];
-    ["Offset of field: MQTTAsync_SSLOptions::enabledCipherSuites"]
-        [::std::mem::offset_of!(MQTTAsync_SSLOptions, enabledCipherSuites) - 40usize];
-    ["Offset of field: MQTTAsync_SSLOptions::enableServerCertAuth"]
-        [::std::mem::offset_of!(MQTTAsync_SSLOptions, enableServerCertAuth) - 48usize];
-    ["Offset of field: MQTTAsync_SSLOptions::sslVersion"]
-        [::std::mem::offset_of!(MQTTAsync_SSLOptions, sslVersion) - 52usize];
-    ["Offset of field: MQTTAsync_SSLOptions::verify"]
-        [::std::mem::offset_of!(MQTTAsync_SSLOptions, verify) - 56usize];
-    ["Offset of field: MQTTAsync_SSLOptions::CApath"]
-        [::std::mem::offset_of!(MQTTAsync_SSLOptions, CApath) - 64usize];
-    ["Offset of field: MQTTAsync_SSLOptions::ssl_error_cb"]
-        [::std::mem::offset_of!(MQTTAsync_SSLOptions, ssl_error_cb) - 72usize];
-    ["Offset of field: MQTTAsync_SSLOptions::ssl_error_context"]
-        [::std::mem::offset_of!(MQTTAsync_SSLOptions, ssl_error_context) - 80usize];
-    ["Offset of field: MQTTAsync_SSLOptions::ssl_psk_cb"]
-        [::std::mem::offset_of!(MQTTAsync_SSLOptions, ssl_psk_cb) - 88usize];
-    ["Offset of field: MQTTAsync_SSLOptions::ssl_psk_context"]
-        [::std::mem::offset_of!(MQTTAsync_SSLOptions, ssl_psk_context) - 96usize];
-    ["Offset of field: MQTTAsync_SSLOptions::disableDefaultTrustStore"]
-        [::std::mem::offset_of!(MQTTAsync_SSLOptions, disableDefaultTrustStore) - 104usize];
-    ["Offset of field: MQTTAsync_SSLOptions::protos"]
-        [::std::mem::offset_of!(MQTTAsync_SSLOptions, protos) - 112usize];
-    ["Offset of field: MQTTAsync_SSLOptions::protos_len"]
-        [::std::mem::offset_of!(MQTTAsync_SSLOptions, protos_len) - 120usize];
-};
+#[test]
+fn bindgen_test_layout_MQTTAsync_SSLOptions() {
+    const UNINIT: ::std::mem::MaybeUninit<MQTTAsync_SSLOptions> = ::std::mem::MaybeUninit::uninit();
+    let ptr = UNINIT.as_ptr();
+    assert_eq!(
+        ::std::mem::size_of::<MQTTAsync_SSLOptions>(),
+        128usize,
+        "Size of MQTTAsync_SSLOptions"
+    );
+    assert_eq!(
+        ::std::mem::align_of::<MQTTAsync_SSLOptions>(),
+        8usize,
+        "Alignment of MQTTAsync_SSLOptions"
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).struct_id) as usize - ptr as usize },
+        0usize,
+        "Offset of field: MQTTAsync_SSLOptions::struct_id"
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).struct_version) as usize - ptr as usize },
+        4usize,
+        "Offset of field: MQTTAsync_SSLOptions::struct_version"
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).trustStore) as usize - ptr as usize },
+        8usize,
+        "Offset of field: MQTTAsync_SSLOptions::trustStore"
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).keyStore) as usize - ptr as usize },
+        16usize,
+        "Offset of field: MQTTAsync_SSLOptions::keyStore"
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).privateKey) as usize - ptr as usize },
+        24usize,
+        "Offset of field: MQTTAsync_SSLOptions::privateKey"
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).privateKeyPassword) as usize - ptr as usize },
+        32usize,
+        "Offset of field: MQTTAsync_SSLOptions::privateKeyPassword"
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).enabledCipherSuites) as usize - ptr as usize },
+        40usize,
+        "Offset of field: MQTTAsync_SSLOptions::enabledCipherSuites"
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).enableServerCertAuth) as usize - ptr as usize },
+        48usize,
+        "Offset of field: MQTTAsync_SSLOptions::enableServerCertAuth"
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).sslVersion) as usize - ptr as usize },
+        52usize,
+        "Offset of field: MQTTAsync_SSLOptions::sslVersion"
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).verify) as usize - ptr as usize },
+        56usize,
+        "Offset of field: MQTTAsync_SSLOptions::verify"
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).CApath) as usize - ptr as usize },
+        64usize,
+        "Offset of field: MQTTAsync_SSLOptions::CApath"
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).ssl_error_cb) as usize - ptr as usize },
+        72usize,
+        "Offset of field: MQTTAsync_SSLOptions::ssl_error_cb"
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).ssl_error_context) as usize - ptr as usize },
+        80usize,
+        "Offset of field: MQTTAsync_SSLOptions::ssl_error_context"
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).ssl_psk_cb) as usize - ptr as usize },
+        88usize,
+        "Offset of field: MQTTAsync_SSLOptions::ssl_psk_cb"
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).ssl_psk_context) as usize - ptr as usize },
+        96usize,
+        "Offset of field: MQTTAsync_SSLOptions::ssl_psk_context"
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).disableDefaultTrustStore) as usize - ptr as usize },
+        104usize,
+        "Offset of field: MQTTAsync_SSLOptions::disableDefaultTrustStore"
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).protos) as usize - ptr as usize },
+        112usize,
+        "Offset of field: MQTTAsync_SSLOptions::protos"
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).protos_len) as usize - ptr as usize },
+        120usize,
+        "Offset of field: MQTTAsync_SSLOptions::protos_len"
+    );
+}
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
 pub struct MQTTAsync_nameValue {
     pub name: *const ::std::os::raw::c_char,
     pub value: *const ::std::os::raw::c_char,
 }
-#[allow(clippy::unnecessary_operation, clippy::identity_op)]
-const _: () = {
-    ["Size of MQTTAsync_nameValue"][::std::mem::size_of::<MQTTAsync_nameValue>() - 16usize];
-    ["Alignment of MQTTAsync_nameValue"][::std::mem::align_of::<MQTTAsync_nameValue>() - 8usize];
-    ["Offset of field: MQTTAsync_nameValue::name"]
-        [::std::mem::offset_of!(MQTTAsync_nameValue, name) - 0usize];
-    ["Offset of field: MQTTAsync_nameValue::value"]
-        [::std::mem::offset_of!(MQTTAsync_nameValue, value) - 8usize];
-};
+#[test]
+fn bindgen_test_layout_MQTTAsync_nameValue() {
+    const UNINIT: ::std::mem::MaybeUninit<MQTTAsync_nameValue> = ::std::mem::MaybeUninit::uninit();
+    let ptr = UNINIT.as_ptr();
+    assert_eq!(
+        ::std::mem::size_of::<MQTTAsync_nameValue>(),
+        16usize,
+        "Size of MQTTAsync_nameValue"
+    );
+    assert_eq!(
+        ::std::mem::align_of::<MQTTAsync_nameValue>(),
+        8usize,
+        "Alignment of MQTTAsync_nameValue"
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).name) as usize - ptr as usize },
+        0usize,
+        "Offset of field: MQTTAsync_nameValue::name"
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).value) as usize - ptr as usize },
+        8usize,
+        "Offset of field: MQTTAsync_nameValue::value"
+    );
+}
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
 pub struct MQTTAsync_connectOptions {
@@ -2055,83 +2773,194 @@ pub struct MQTTAsync_connectOptions__bindgen_ty_1 {
     pub len: ::std::os::raw::c_int,
     pub data: *const ::std::os::raw::c_void,
 }
-#[allow(clippy::unnecessary_operation, clippy::identity_op)]
-const _: () = {
-    ["Size of MQTTAsync_connectOptions__bindgen_ty_1"]
-        [::std::mem::size_of::<MQTTAsync_connectOptions__bindgen_ty_1>() - 16usize];
-    ["Alignment of MQTTAsync_connectOptions__bindgen_ty_1"]
-        [::std::mem::align_of::<MQTTAsync_connectOptions__bindgen_ty_1>() - 8usize];
-    ["Offset of field: MQTTAsync_connectOptions__bindgen_ty_1::len"]
-        [::std::mem::offset_of!(MQTTAsync_connectOptions__bindgen_ty_1, len) - 0usize];
-    ["Offset of field: MQTTAsync_connectOptions__bindgen_ty_1::data"]
-        [::std::mem::offset_of!(MQTTAsync_connectOptions__bindgen_ty_1, data) - 8usize];
-};
-#[allow(clippy::unnecessary_operation, clippy::identity_op)]
-const _: () = {
-    ["Size of MQTTAsync_connectOptions"]
-        [::std::mem::size_of::<MQTTAsync_connectOptions>() - 200usize];
-    ["Alignment of MQTTAsync_connectOptions"]
-        [::std::mem::align_of::<MQTTAsync_connectOptions>() - 8usize];
-    ["Offset of field: MQTTAsync_connectOptions::struct_id"]
-        [::std::mem::offset_of!(MQTTAsync_connectOptions, struct_id) - 0usize];
-    ["Offset of field: MQTTAsync_connectOptions::struct_version"]
-        [::std::mem::offset_of!(MQTTAsync_connectOptions, struct_version) - 4usize];
-    ["Offset of field: MQTTAsync_connectOptions::keepAliveInterval"]
-        [::std::mem::offset_of!(MQTTAsync_connectOptions, keepAliveInterval) - 8usize];
-    ["Offset of field: MQTTAsync_connectOptions::cleansession"]
-        [::std::mem::offset_of!(MQTTAsync_connectOptions, cleansession) - 12usize];
-    ["Offset of field: MQTTAsync_connectOptions::maxInflight"]
-        [::std::mem::offset_of!(MQTTAsync_connectOptions, maxInflight) - 16usize];
-    ["Offset of field: MQTTAsync_connectOptions::will"]
-        [::std::mem::offset_of!(MQTTAsync_connectOptions, will) - 24usize];
-    ["Offset of field: MQTTAsync_connectOptions::username"]
-        [::std::mem::offset_of!(MQTTAsync_connectOptions, username) - 32usize];
-    ["Offset of field: MQTTAsync_connectOptions::password"]
-        [::std::mem::offset_of!(MQTTAsync_connectOptions, password) - 40usize];
-    ["Offset of field: MQTTAsync_connectOptions::connectTimeout"]
-        [::std::mem::offset_of!(MQTTAsync_connectOptions, connectTimeout) - 48usize];
-    ["Offset of field: MQTTAsync_connectOptions::retryInterval"]
-        [::std::mem::offset_of!(MQTTAsync_connectOptions, retryInterval) - 52usize];
-    ["Offset of field: MQTTAsync_connectOptions::ssl"]
-        [::std::mem::offset_of!(MQTTAsync_connectOptions, ssl) - 56usize];
-    ["Offset of field: MQTTAsync_connectOptions::onSuccess"]
-        [::std::mem::offset_of!(MQTTAsync_connectOptions, onSuccess) - 64usize];
-    ["Offset of field: MQTTAsync_connectOptions::onFailure"]
-        [::std::mem::offset_of!(MQTTAsync_connectOptions, onFailure) - 72usize];
-    ["Offset of field: MQTTAsync_connectOptions::context"]
-        [::std::mem::offset_of!(MQTTAsync_connectOptions, context) - 80usize];
-    ["Offset of field: MQTTAsync_connectOptions::serverURIcount"]
-        [::std::mem::offset_of!(MQTTAsync_connectOptions, serverURIcount) - 88usize];
-    ["Offset of field: MQTTAsync_connectOptions::serverURIs"]
-        [::std::mem::offset_of!(MQTTAsync_connectOptions, serverURIs) - 96usize];
-    ["Offset of field: MQTTAsync_connectOptions::MQTTVersion"]
-        [::std::mem::offset_of!(MQTTAsync_connectOptions, MQTTVersion) - 104usize];
-    ["Offset of field: MQTTAsync_connectOptions::automaticReconnect"]
-        [::std::mem::offset_of!(MQTTAsync_connectOptions, automaticReconnect) - 108usize];
-    ["Offset of field: MQTTAsync_connectOptions::minRetryInterval"]
-        [::std::mem::offset_of!(MQTTAsync_connectOptions, minRetryInterval) - 112usize];
-    ["Offset of field: MQTTAsync_connectOptions::maxRetryInterval"]
-        [::std::mem::offset_of!(MQTTAsync_connectOptions, maxRetryInterval) - 116usize];
-    ["Offset of field: MQTTAsync_connectOptions::binarypwd"]
-        [::std::mem::offset_of!(MQTTAsync_connectOptions, binarypwd) - 120usize];
-    ["Offset of field: MQTTAsync_connectOptions::cleanstart"]
-        [::std::mem::offset_of!(MQTTAsync_connectOptions, cleanstart) - 136usize];
-    ["Offset of field: MQTTAsync_connectOptions::connectProperties"]
-        [::std::mem::offset_of!(MQTTAsync_connectOptions, connectProperties) - 144usize];
-    ["Offset of field: MQTTAsync_connectOptions::willProperties"]
-        [::std::mem::offset_of!(MQTTAsync_connectOptions, willProperties) - 152usize];
-    ["Offset of field: MQTTAsync_connectOptions::onSuccess5"]
-        [::std::mem::offset_of!(MQTTAsync_connectOptions, onSuccess5) - 160usize];
-    ["Offset of field: MQTTAsync_connectOptions::onFailure5"]
-        [::std::mem::offset_of!(MQTTAsync_connectOptions, onFailure5) - 168usize];
-    ["Offset of field: MQTTAsync_connectOptions::httpHeaders"]
-        [::std::mem::offset_of!(MQTTAsync_connectOptions, httpHeaders) - 176usize];
-    ["Offset of field: MQTTAsync_connectOptions::httpProxy"]
-        [::std::mem::offset_of!(MQTTAsync_connectOptions, httpProxy) - 184usize];
-    ["Offset of field: MQTTAsync_connectOptions::httpsProxy"]
-        [::std::mem::offset_of!(MQTTAsync_connectOptions, httpsProxy) - 192usize];
-};
-unsafe extern "C" {
+#[test]
+fn bindgen_test_layout_MQTTAsync_connectOptions__bindgen_ty_1() {
+    const UNINIT: ::std::mem::MaybeUninit<MQTTAsync_connectOptions__bindgen_ty_1> =
+        ::std::mem::MaybeUninit::uninit();
+    let ptr = UNINIT.as_ptr();
+    assert_eq!(
+        ::std::mem::size_of::<MQTTAsync_connectOptions__bindgen_ty_1>(),
+        16usize,
+        "Size of MQTTAsync_connectOptions__bindgen_ty_1"
+    );
+    assert_eq!(
+        ::std::mem::align_of::<MQTTAsync_connectOptions__bindgen_ty_1>(),
+        8usize,
+        "Alignment of MQTTAsync_connectOptions__bindgen_ty_1"
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).len) as usize - ptr as usize },
+        0usize,
+        "Offset of field: MQTTAsync_connectOptions__bindgen_ty_1::len"
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).data) as usize - ptr as usize },
+        8usize,
+        "Offset of field: MQTTAsync_connectOptions__bindgen_ty_1::data"
+    );
+}
+#[test]
+fn bindgen_test_layout_MQTTAsync_connectOptions() {
+    const UNINIT: ::std::mem::MaybeUninit<MQTTAsync_connectOptions> =
+        ::std::mem::MaybeUninit::uninit();
+    let ptr = UNINIT.as_ptr();
+    assert_eq!(
+        ::std::mem::size_of::<MQTTAsync_connectOptions>(),
+        200usize,
+        "Size of MQTTAsync_connectOptions"
+    );
+    assert_eq!(
+        ::std::mem::align_of::<MQTTAsync_connectOptions>(),
+        8usize,
+        "Alignment of MQTTAsync_connectOptions"
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).struct_id) as usize - ptr as usize },
+        0usize,
+        "Offset of field: MQTTAsync_connectOptions::struct_id"
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).struct_version) as usize - ptr as usize },
+        4usize,
+        "Offset of field: MQTTAsync_connectOptions::struct_version"
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).keepAliveInterval) as usize - ptr as usize },
+        8usize,
+        "Offset of field: MQTTAsync_connectOptions::keepAliveInterval"
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).cleansession) as usize - ptr as usize },
+        12usize,
+        "Offset of field: MQTTAsync_connectOptions::cleansession"
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).maxInflight) as usize - ptr as usize },
+        16usize,
+        "Offset of field: MQTTAsync_connectOptions::maxInflight"
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).will) as usize - ptr as usize },
+        24usize,
+        "Offset of field: MQTTAsync_connectOptions::will"
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).username) as usize - ptr as usize },
+        32usize,
+        "Offset of field: MQTTAsync_connectOptions::username"
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).password) as usize - ptr as usize },
+        40usize,
+        "Offset of field: MQTTAsync_connectOptions::password"
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).connectTimeout) as usize - ptr as usize },
+        48usize,
+        "Offset of field: MQTTAsync_connectOptions::connectTimeout"
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).retryInterval) as usize - ptr as usize },
+        52usize,
+        "Offset of field: MQTTAsync_connectOptions::retryInterval"
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).ssl) as usize - ptr as usize },
+        56usize,
+        "Offset of field: MQTTAsync_connectOptions::ssl"
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).onSuccess) as usize - ptr as usize },
+        64usize,
+        "Offset of field: MQTTAsync_connectOptions::onSuccess"
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).onFailure) as usize - ptr as usize },
+        72usize,
+        "Offset of field: MQTTAsync_connectOptions::onFailure"
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).context) as usize - ptr as usize },
+        80usize,
+        "Offset of field: MQTTAsync_connectOptions::context"
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).serverURIcount) as usize - ptr as usize },
+        88usize,
+        "Offset of field: MQTTAsync_connectOptions::serverURIcount"
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).serverURIs) as usize - ptr as usize },
+        96usize,
+        "Offset of field: MQTTAsync_connectOptions::serverURIs"
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).MQTTVersion) as usize - ptr as usize },
+        104usize,
+        "Offset of field: MQTTAsync_connectOptions::MQTTVersion"
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).automaticReconnect) as usize - ptr as usize },
+        108usize,
+        "Offset of field: MQTTAsync_connectOptions::automaticReconnect"
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).minRetryInterval) as usize - ptr as usize },
+        112usize,
+        "Offset of field: MQTTAsync_connectOptions::minRetryInterval"
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).maxRetryInterval) as usize - ptr as usize },
+        116usize,
+        "Offset of field: MQTTAsync_connectOptions::maxRetryInterval"
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).binarypwd) as usize - ptr as usize },
+        120usize,
+        "Offset of field: MQTTAsync_connectOptions::binarypwd"
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).cleanstart) as usize - ptr as usize },
+        136usize,
+        "Offset of field: MQTTAsync_connectOptions::cleanstart"
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).connectProperties) as usize - ptr as usize },
+        144usize,
+        "Offset of field: MQTTAsync_connectOptions::connectProperties"
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).willProperties) as usize - ptr as usize },
+        152usize,
+        "Offset of field: MQTTAsync_connectOptions::willProperties"
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).onSuccess5) as usize - ptr as usize },
+        160usize,
+        "Offset of field: MQTTAsync_connectOptions::onSuccess5"
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).onFailure5) as usize - ptr as usize },
+        168usize,
+        "Offset of field: MQTTAsync_connectOptions::onFailure5"
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).httpHeaders) as usize - ptr as usize },
+        176usize,
+        "Offset of field: MQTTAsync_connectOptions::httpHeaders"
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).httpProxy) as usize - ptr as usize },
+        184usize,
+        "Offset of field: MQTTAsync_connectOptions::httpProxy"
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).httpsProxy) as usize - ptr as usize },
+        192usize,
+        "Offset of field: MQTTAsync_connectOptions::httpsProxy"
+    );
+}
+extern "C" {
     pub fn MQTTAsync_connect(
         handle: MQTTAsync,
         options: *const MQTTAsync_connectOptions,
@@ -2151,43 +2980,82 @@ pub struct MQTTAsync_disconnectOptions {
     pub onSuccess5: MQTTAsync_onSuccess5,
     pub onFailure5: MQTTAsync_onFailure5,
 }
-#[allow(clippy::unnecessary_operation, clippy::identity_op)]
-const _: () = {
-    ["Size of MQTTAsync_disconnectOptions"]
-        [::std::mem::size_of::<MQTTAsync_disconnectOptions>() - 88usize];
-    ["Alignment of MQTTAsync_disconnectOptions"]
-        [::std::mem::align_of::<MQTTAsync_disconnectOptions>() - 8usize];
-    ["Offset of field: MQTTAsync_disconnectOptions::struct_id"]
-        [::std::mem::offset_of!(MQTTAsync_disconnectOptions, struct_id) - 0usize];
-    ["Offset of field: MQTTAsync_disconnectOptions::struct_version"]
-        [::std::mem::offset_of!(MQTTAsync_disconnectOptions, struct_version) - 4usize];
-    ["Offset of field: MQTTAsync_disconnectOptions::timeout"]
-        [::std::mem::offset_of!(MQTTAsync_disconnectOptions, timeout) - 8usize];
-    ["Offset of field: MQTTAsync_disconnectOptions::onSuccess"]
-        [::std::mem::offset_of!(MQTTAsync_disconnectOptions, onSuccess) - 16usize];
-    ["Offset of field: MQTTAsync_disconnectOptions::onFailure"]
-        [::std::mem::offset_of!(MQTTAsync_disconnectOptions, onFailure) - 24usize];
-    ["Offset of field: MQTTAsync_disconnectOptions::context"]
-        [::std::mem::offset_of!(MQTTAsync_disconnectOptions, context) - 32usize];
-    ["Offset of field: MQTTAsync_disconnectOptions::properties"]
-        [::std::mem::offset_of!(MQTTAsync_disconnectOptions, properties) - 40usize];
-    ["Offset of field: MQTTAsync_disconnectOptions::reasonCode"]
-        [::std::mem::offset_of!(MQTTAsync_disconnectOptions, reasonCode) - 64usize];
-    ["Offset of field: MQTTAsync_disconnectOptions::onSuccess5"]
-        [::std::mem::offset_of!(MQTTAsync_disconnectOptions, onSuccess5) - 72usize];
-    ["Offset of field: MQTTAsync_disconnectOptions::onFailure5"]
-        [::std::mem::offset_of!(MQTTAsync_disconnectOptions, onFailure5) - 80usize];
-};
-unsafe extern "C" {
+#[test]
+fn bindgen_test_layout_MQTTAsync_disconnectOptions() {
+    const UNINIT: ::std::mem::MaybeUninit<MQTTAsync_disconnectOptions> =
+        ::std::mem::MaybeUninit::uninit();
+    let ptr = UNINIT.as_ptr();
+    assert_eq!(
+        ::std::mem::size_of::<MQTTAsync_disconnectOptions>(),
+        88usize,
+        "Size of MQTTAsync_disconnectOptions"
+    );
+    assert_eq!(
+        ::std::mem::align_of::<MQTTAsync_disconnectOptions>(),
+        8usize,
+        "Alignment of MQTTAsync_disconnectOptions"
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).struct_id) as usize - ptr as usize },
+        0usize,
+        "Offset of field: MQTTAsync_disconnectOptions::struct_id"
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).struct_version) as usize - ptr as usize },
+        4usize,
+        "Offset of field: MQTTAsync_disconnectOptions::struct_version"
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).timeout) as usize - ptr as usize },
+        8usize,
+        "Offset of field: MQTTAsync_disconnectOptions::timeout"
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).onSuccess) as usize - ptr as usize },
+        16usize,
+        "Offset of field: MQTTAsync_disconnectOptions::onSuccess"
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).onFailure) as usize - ptr as usize },
+        24usize,
+        "Offset of field: MQTTAsync_disconnectOptions::onFailure"
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).context) as usize - ptr as usize },
+        32usize,
+        "Offset of field: MQTTAsync_disconnectOptions::context"
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).properties) as usize - ptr as usize },
+        40usize,
+        "Offset of field: MQTTAsync_disconnectOptions::properties"
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).reasonCode) as usize - ptr as usize },
+        64usize,
+        "Offset of field: MQTTAsync_disconnectOptions::reasonCode"
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).onSuccess5) as usize - ptr as usize },
+        72usize,
+        "Offset of field: MQTTAsync_disconnectOptions::onSuccess5"
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).onFailure5) as usize - ptr as usize },
+        80usize,
+        "Offset of field: MQTTAsync_disconnectOptions::onFailure5"
+    );
+}
+extern "C" {
     pub fn MQTTAsync_disconnect(
         handle: MQTTAsync,
         options: *const MQTTAsync_disconnectOptions,
     ) -> ::std::os::raw::c_int;
 }
-unsafe extern "C" {
+extern "C" {
     pub fn MQTTAsync_isConnected(handle: MQTTAsync) -> ::std::os::raw::c_int;
 }
-unsafe extern "C" {
+extern "C" {
     pub fn MQTTAsync_subscribe(
         handle: MQTTAsync,
         topic: *const ::std::os::raw::c_char,
@@ -2195,7 +3063,7 @@ unsafe extern "C" {
         response: *mut MQTTAsync_responseOptions,
     ) -> ::std::os::raw::c_int;
 }
-unsafe extern "C" {
+extern "C" {
     pub fn MQTTAsync_subscribeMany(
         handle: MQTTAsync,
         count: ::std::os::raw::c_int,
@@ -2204,14 +3072,14 @@ unsafe extern "C" {
         response: *mut MQTTAsync_responseOptions,
     ) -> ::std::os::raw::c_int;
 }
-unsafe extern "C" {
+extern "C" {
     pub fn MQTTAsync_unsubscribe(
         handle: MQTTAsync,
         topic: *const ::std::os::raw::c_char,
         response: *mut MQTTAsync_responseOptions,
     ) -> ::std::os::raw::c_int;
 }
-unsafe extern "C" {
+extern "C" {
     pub fn MQTTAsync_unsubscribeMany(
         handle: MQTTAsync,
         count: ::std::os::raw::c_int,
@@ -2219,7 +3087,7 @@ unsafe extern "C" {
         response: *mut MQTTAsync_responseOptions,
     ) -> ::std::os::raw::c_int;
 }
-unsafe extern "C" {
+extern "C" {
     pub fn MQTTAsync_send(
         handle: MQTTAsync,
         destinationName: *const ::std::os::raw::c_char,
@@ -2230,7 +3098,7 @@ unsafe extern "C" {
         response: *mut MQTTAsync_responseOptions,
     ) -> ::std::os::raw::c_int;
 }
-unsafe extern "C" {
+extern "C" {
     pub fn MQTTAsync_sendMessage(
         handle: MQTTAsync,
         destinationName: *const ::std::os::raw::c_char,
@@ -2238,33 +3106,33 @@ unsafe extern "C" {
         response: *mut MQTTAsync_responseOptions,
     ) -> ::std::os::raw::c_int;
 }
-unsafe extern "C" {
+extern "C" {
     pub fn MQTTAsync_getPendingTokens(
         handle: MQTTAsync,
         tokens: *mut *mut MQTTAsync_token,
     ) -> ::std::os::raw::c_int;
 }
-unsafe extern "C" {
+extern "C" {
     pub fn MQTTAsync_isComplete(handle: MQTTAsync, token: MQTTAsync_token)
         -> ::std::os::raw::c_int;
 }
-unsafe extern "C" {
+extern "C" {
     pub fn MQTTAsync_waitForCompletion(
         handle: MQTTAsync,
         token: MQTTAsync_token,
         timeout: ::std::os::raw::c_ulong,
     ) -> ::std::os::raw::c_int;
 }
-unsafe extern "C" {
+extern "C" {
     pub fn MQTTAsync_freeMessage(msg: *mut *mut MQTTAsync_message);
 }
-unsafe extern "C" {
+extern "C" {
     pub fn MQTTAsync_free(ptr: *mut ::std::os::raw::c_void);
 }
-unsafe extern "C" {
+extern "C" {
     pub fn MQTTAsync_malloc(size: usize) -> *mut ::std::os::raw::c_void;
 }
-unsafe extern "C" {
+extern "C" {
     pub fn MQTTAsync_destroy(handle: *mut MQTTAsync);
 }
 pub const MQTTASYNC_TRACE_LEVELS_MQTTASYNC_TRACE_MAXIMUM: MQTTASYNC_TRACE_LEVELS = 1;
@@ -2275,19 +3143,19 @@ pub const MQTTASYNC_TRACE_LEVELS_MQTTASYNC_TRACE_ERROR: MQTTASYNC_TRACE_LEVELS =
 pub const MQTTASYNC_TRACE_LEVELS_MQTTASYNC_TRACE_SEVERE: MQTTASYNC_TRACE_LEVELS = 6;
 pub const MQTTASYNC_TRACE_LEVELS_MQTTASYNC_TRACE_FATAL: MQTTASYNC_TRACE_LEVELS = 7;
 pub type MQTTASYNC_TRACE_LEVELS = ::std::os::raw::c_int;
-unsafe extern "C" {
+extern "C" {
     pub fn MQTTAsync_setTraceLevel(level: MQTTASYNC_TRACE_LEVELS);
 }
 pub type MQTTAsync_traceCallback = ::std::option::Option<
     unsafe extern "C" fn(level: MQTTASYNC_TRACE_LEVELS, message: *mut ::std::os::raw::c_char),
 >;
-unsafe extern "C" {
+extern "C" {
     pub fn MQTTAsync_setTraceCallback(callback: MQTTAsync_traceCallback);
 }
-unsafe extern "C" {
+extern "C" {
     pub fn MQTTAsync_getVersionInfo() -> *mut MQTTAsync_nameValue;
 }
-unsafe extern "C" {
+extern "C" {
     pub fn MQTTAsync_strerror(code: ::std::os::raw::c_int) -> *const ::std::os::raw::c_char;
 }
 #[repr(C)]

@@ -127,16 +127,17 @@ impl Message {
     ///
     /// * `topic` The topic on which the message is published.
     /// * `msg` The message struct from the C library
-    /// 
+    ///
     /// # Safety
-    /// 
-    /// Caller must make sure that cmsg is valid 
+    ///
+    /// Caller must make sure that cmsg is valid
     pub(crate) unsafe fn from_c_parts(topic: CString, cmsg: &ffi::MQTTAsync_message) -> Self {
         let len = cmsg.payloadlen as usize;
 
         let payload = if cmsg.payload.is_null() {
             Vec::new()
-        } else {
+        }
+        else {
             slice::from_raw_parts(cmsg.payload as *mut u8, len).to_vec()
         };
 

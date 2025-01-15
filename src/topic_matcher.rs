@@ -326,7 +326,7 @@ impl<T> TopicMatcher<T> {
     }
 }
 
-impl <T: Clone> TopicMatcher<T> {
+impl<T: Clone> TopicMatcher<T> {
     /// Inserts multiple filters all with (a clone of) the same value.
     pub fn insert_many<S: AsRef<str>>(&mut self, filters: &[S], val: T) {
         for filter in filters {
@@ -578,14 +578,9 @@ mod tests {
 
     #[test]
     fn test_topic_matcher_many() {
-
         let mut tm = TopicMatcher::new();
         tm.insert("some/test/#", 99);
-        tm.insert_many(&[
-            "some/test/topic",
-            "some/+/topic",
-            "some/prod/topic",
-        ], 42);
+        tm.insert_many(&["some/test/topic", "some/+/topic", "some/prod/topic"], 42);
 
         assert_eq!(tm.get("some/test/#"), Some(&99));
         assert_eq!(tm.get("some/test/topic"), Some(&42));
