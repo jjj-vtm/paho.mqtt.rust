@@ -13,12 +13,13 @@ The initial version of this crate is a wrapper for the Paho C library, and inclu
 - Supports MQTT v5, 3.1.1, and 3.1
 - Network Transports:
     - Standard TCP support
+    - UNIX-domain sockets (*nix only)
     - SSL / TLS (with optional ALPN protocols)
     - WebSockets (secure and insecure), and optional Proxies
 - QoS 0, 1, and 2
 - Last Will and Testament (LWT)
 - Message Persistence
-    - File or memory persistence
+    - Built-in file or memory persistence
     - User-defined key/value persistence (including example for Redis)
 - Automatic Reconnect
 - Offline Buffering
@@ -28,7 +29,7 @@ The initial version of this crate is a wrapper for the Paho C library, and inclu
     - Traditional asynchronous (token/wait) API
     - Synchronous/blocking  API
 
-Requires Paho C v1.3.13, or possibly later.
+Requires Paho C v1.3.14, or possibly later.
 
 ## Latest News
 
@@ -38,31 +39,46 @@ To keep up with the latest announcements for this project, follow:
 
 **EMail:** [Eclipse Paho Mailing List](https://accounts.eclipse.org/mailing-list/paho-dev)
 
-### Upcoming v0.13
+### What's New in v0.13
+
+Version v0.13.0 now wraps Paho C v0.3.14, which has several new features, including support for UNIX-domain sockets on *nix systems and HTTP proxy improvements.
+
+- Updated License to EPL-v2.0
+- Added some missing Paho legal documents to the repo.
+- Bumped MSRV to Rust v1.73.0
+- Bumped -sys to v0.10.0
+    - Wrapping Paho C v0.3.14 with some new features:
+        - Support for UNIX-domain sockets on local machine (*nix only)
+        - HTTP proxy improvements:
+            - The environment variable PAHO_C_CLIENT_USE_HTTP_PROXY must be set to TRUE for http_proxy environment variable to be used
+        - The http_proxy environment variable to be read is lower case only
+        - The no_proxy environment variable can be set to exclude hosts from using an environment set proxy
+    - `build.rs` builds optional UNIX sockets into Paho C on non-Windows systems (*nix)
+- Reworked the Error type
+    - Remove `Paho` and `PahoDescr` errors. De-nested them into the top-level.
+    - Parsing the error messages from PahoDescr for new error types.
+    - Removed Paho error constants. Now errors can be matched easily/directly.
+- `Token` simplified to create an `Option<Result<ServerResponse>>` instead of individual components.
+- Created new enumeration types:
+    - `MqttVersion`
+    - `ConnectReturnCode` (for MQTT v3.x)
+    - `QoS`
+- [#181](https://github.com/eclipse-paho/paho.mqtt.rust/pull/181) Updated README.md with explanation on how to build for apple m1/x86_64
+- [#216](https://github.com/eclipse-paho/paho.mqtt.rust/issues/216) Deref QoS pointers for SubscribeMany and UnsubscribeMany in server response
+- [#224](https://github.com/eclipse-paho/paho.mqtt.rust/pull/224) Fix QoS 0 and 1 conversion
+- [#236](https://github.com/eclipse-paho/paho.mqtt.rust/pull/236) Make from_c_parts only visible inside crate
+
+### New work for future releases
 
 Work has started to revamp multiple aspects of the internal code without seriously disrupting the API. Some of this will be to hide aspects of the Paho C library that leaked into the Rust API and start the march towards a 100% Rust implementation of this library. (That won't happen too soon, but it's time to start.)
 
 One set of breaking changes will be around the library's errors. The Paho C errors will be de-nested and made easier to match. More information will also be extracted from the C library when possible.
 
-### What's new in v0.12.3
-
-- The -sys crate now wraps Paho C v1.3.13, fixing several issues, including crashes on reconnect callbacks.
-- Made the C logs less verbose
-- [#203](https://github.com/eclipse/paho.mqtt.rust/pull/203) `AsyncClient::server_uri()` getter.
-- [#202](https://github.com/eclipse/paho.mqtt.rust/pull/202) Fix disconnect timeout (from sec to ms)
-
-
-### What's new in v0.12.2
-
-- [#209](https://github.com/eclipse/paho.mqtt.rust/issues/209) Added trace/log statements from the Paho C library to the Rust logs
-- Minor cleanup of subscriber examples.
-
-
 ## Using the Crate
 
 To use the library, simply add this to your application's `Cargo.toml` dependencies list:
 
-    paho-mqtt = "0.12"
+    paho-mqtt = "0.13"
 
 By default it enables the features "bundled" and "ssl" meaning it will attempt to compile the Paho C library for the target, using the pre-built bindings, and will enable secure sockets capabilities using the system OpenSSL library.
 
@@ -109,17 +125,17 @@ In particular:
 So, by default, your application will build for SSL/TLS, assuming an existing install of the OpenSSL library. In your _Cargo.toml_, just:
 
     # Use the system OpenSSL library
-    paho-mqtt = "0.12"
+    paho-mqtt = "0.13"
 
 If you don't have OpenSSL installed for your target and want to build it with your app:
 
     # Build OpenSSL with the project
-    paho-mqtt = { version = "0.12", features=["vendored-ssl"] }
+    paho-mqtt = { version = "0.13", features=["vendored-ssl"] }
 
 If you want to build your app _without_ SSL/TLS, disable the default features, then add "bundled" back in (if desired):
 
     # Don't use SSL at all
-    paho-mqtt = { version = "0.12", default-features=false, features=["bundled"] }
+    paho-mqtt = { version = "0.13", default-features=false, features=["bundled"] }
 
 ### Windows
 
@@ -132,7 +148,7 @@ If you install OpenSSL, you usually need tell the Rust build tools where to find
 Point it to wherever you installed the library. Alternately, you can tell Cargo to build it with the app, using the _vendored-ssl_ feature:
 
     # Build OpenSSL with the project
-    paho-mqtt = { version = "0.12", features=["vendored-ssl"] }
+    paho-mqtt = { version = "0.13", features=["vendored-ssl"] }
 
 ### macOS Universal Binaries
 
@@ -163,7 +179,7 @@ Then you can use Casro to build your application, like:
 
 When using SSL/TLS with _musl_, you need a static version of the OpenSSL library built for _musl_. If you don't have one built and installed, you can use _vendored-ssl_. So, in your _Cargo.toml:_
 
-    paho-mqtt = { version = "0.12", features=["vendored-ssl"] }
+    paho-mqtt = { version = "0.13", features=["vendored-ssl"] }
 
 When using _musl_ with OpenSSL, it appears that you also need to manually link with the C library. There are two ways to do this. First, you can create a simple `build.rs` for your application, specifying the link:
 

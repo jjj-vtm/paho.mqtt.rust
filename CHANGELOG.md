@@ -5,8 +5,14 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [v0.13.0](https://github.com/eclipse/paho.mqtt.rust/compare/v0.12.5..v0.13.0) - (Unreleased)
+## [v0.13.0](https://github.com/eclipse/paho.mqtt.rust/compare/v0.12.5..v0.13.0) - (2025-01-15)
 
+- Updated License to EPL-v2.0
+- Bumped MSRV to Rust v1.73.0
+- Bumped -sys to v0.10.0
+    - Wrapping Paho C v0.3.14
+        - Support for UNIX-domain sockets on local machine (*nix only)
+    - `build.rs` builds optional UNIX sockets into Paho C on non-Windows systems (*nix)
 - Reworked the Error type
     - Remove `Paho` and `PahoDescr` errors. De-nested them into the top-level.
     - Parsing the error messages from PahoDescr for new error types.
@@ -16,6 +22,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
     - `MqttVersion`
     - `ConnectReturnCode` (for MQTT v3.x)
     - `QoS`
+- [#181](https://github.com/eclipse-paho/paho.mqtt.rust/pull/181) Updated README.md with explanation on how to build for apple m1/x86_64
+- [#216](https://github.com/eclipse-paho/paho.mqtt.rust/issues/216) Deref QoS pointers for SubscribeMany and UnsubscribeMany in server response
+- [#224](https://github.com/eclipse-paho/paho.mqtt.rust/pull/224) Fix QoS 0 and 1 conversion
+- [#236](https://github.com/eclipse-paho/paho.mqtt.rust/pull/236) Make from_c_parts only visible inside crate
 
 
 ## [v0.12.5](https://github.com/eclipse/paho.mqtt.rust/compare/v0.12.4..v0.12.5) - (2024-05-25)
