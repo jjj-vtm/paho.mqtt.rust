@@ -131,3 +131,12 @@ impl From<i32> for QoS {
         Self::try_from(qos as u8).unwrap_or_default()
     }
 }
+
+// This is included for backward compatibility, but should eventually be
+// changed to TryFrom, possibly if/when we change the client API to return
+// Result<Token> from most calls.
+impl From<u32> for QoS {
+    fn from(qos: u32) -> Self {
+        Self::try_from(qos as u8).unwrap_or_default()
+    }
+}
