@@ -460,7 +460,17 @@ impl AsyncClient {
         let mut lkopts = self.inner.opts.lock().unwrap();
         *lkopts = opts;
 
-        let rc = unsafe { ffi::MQTTAsync_connect(self.inner.handle, &lkopts.copts) };
+        // This is a small, temporary, hack to get around a possible segfault in the C lib.
+        // See:
+        // <https://github.com/eclipse-paho/paho.mqtt.rust/issues/238>
+        // <https://github.com/eclipse-paho/paho.mqtt.c/issues/1566>
+        let mut ssl_copts = ffi::MQTTAsync_SSLOptions::default();
+        let mut copts = lkopts.copts;
+        if copts.ssl.is_null() {
+            copts.ssl = &mut ssl_copts;
+        }
+
+        let rc = unsafe { ffi::MQTTAsync_connect(self.inner.handle, &copts /*&lkopts.copts*/) };
 
         if rc != 0 {
             mem::drop(unsafe { Token::from_raw(lkopts.copts.context) });
@@ -505,7 +515,13 @@ impl AsyncClient {
         let mut lkopts = self.inner.opts.lock().unwrap();
         *lkopts = opts;
 
-        let rc = unsafe { ffi::MQTTAsync_connect(self.inner.handle, &lkopts.copts) };
+        let mut ssl_copts = ffi::MQTTAsync_SSLOptions::default();
+        let mut copts = lkopts.copts;
+        if copts.ssl.is_null() {
+            copts.ssl = &mut ssl_copts;
+        }
+
+        let rc = unsafe { ffi::MQTTAsync_connect(self.inner.handle, &copts /*&lkopts.copts*/) };
 
         if rc != 0 {
             mem::drop(unsafe { Token::from_raw(lkopts.copts.context) });
