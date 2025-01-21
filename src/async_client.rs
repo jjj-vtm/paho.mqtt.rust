@@ -3,7 +3,7 @@
 // This file is part of the Eclipse Paho MQTT Rust Client library.
 
 /*******************************************************************************
- * Copyright (c) 2017-2024 Frank Pagliughi <fpagliughi@mindspring.com>
+ * Copyright (c) 2017-2025 Frank Pagliughi <fpagliughi@mindspring.com>
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v2.0
@@ -31,10 +31,9 @@
 //! wait for the connection to complete.
 //!
 //! ```
-//! use futures::future::Future;
 //! use paho_mqtt as mqtt;
 //!
-//! let cli = mqtt::AsyncClient::new("tcp://localhost:1883").unwrap();
+//! let cli = mqtt::AsyncClient::new("mqtt://localhost:1883").unwrap();
 //!
 //! // Start an async operation and get the token for it.
 //! let tok = cli.connect(mqtt::ConnectOptions::new());
@@ -470,7 +469,9 @@ impl AsyncClient {
             copts.ssl = &mut ssl_copts;
         }
 
-        let rc = unsafe { ffi::MQTTAsync_connect(self.inner.handle, &copts /*&lkopts.copts*/) };
+        let rc = unsafe {
+            ffi::MQTTAsync_connect(self.inner.handle, &copts /*&lkopts.copts*/)
+        };
 
         if rc != 0 {
             mem::drop(unsafe { Token::from_raw(lkopts.copts.context) });
@@ -521,7 +522,9 @@ impl AsyncClient {
             copts.ssl = &mut ssl_copts;
         }
 
-        let rc = unsafe { ffi::MQTTAsync_connect(self.inner.handle, &copts /*&lkopts.copts*/) };
+        let rc = unsafe {
+            ffi::MQTTAsync_connect(self.inner.handle, &copts /*&lkopts.copts*/)
+        };
 
         if rc != 0 {
             mem::drop(unsafe { Token::from_raw(lkopts.copts.context) });

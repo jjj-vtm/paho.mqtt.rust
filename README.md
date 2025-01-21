@@ -63,10 +63,8 @@ Version v0.13.0 now wraps Paho C v0.3.14, which has several new features, includ
     - `MqttVersion`
     - `ConnectReturnCode` (for MQTT v3.x)
     - `QoS`
-- [#181](https://github.com/eclipse-paho/paho.mqtt.rust/pull/181) Updated README.md with explanation on how to build for apple m1/x86_64
-- [#216](https://github.com/eclipse-paho/paho.mqtt.rust/issues/216) Deref QoS pointers for SubscribeMany and UnsubscribeMany in server response
-- [#224](https://github.com/eclipse-paho/paho.mqtt.rust/pull/224) Fix QoS 0 and 1 conversion
-- [#236](https://github.com/eclipse-paho/paho.mqtt.rust/pull/236) Make from_c_parts only visible inside crate
+
+For additional updates and bug fixes, see the CHANGELOG.
 
 ### New work for future releases
 
@@ -201,9 +199,9 @@ The second option is to tell Cargo to always link the C library when compiling f
 
 ### Minimum Supported Rust Version (MSRV)
 
-**v1.63.0**
+**v1.73.0**
 
-This package uses Rust Edition 2021, requiring an MSRV of 1.63.0. Although it may build and work with slightly older versions of the compiler, this is the oldest version being tested and maintained by the developers.
+This package uses Rust Edition 2021, and requires an MSRV of 1.73.0. Although it may build and work with slightly older versions of the compiler, this is the oldest version being tested and maintained by the developers.
 
 ## Developing the Crate
 

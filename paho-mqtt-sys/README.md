@@ -9,7 +9,7 @@ This package can build the recommended version of Paho C automatically. This is 
 
 When not using the _bundled_ build, it will attept to link to a pre-installed version of the library. It is fairly sensitive to the C version.
 
-The current recommended Paho C version is: v1.3.13
+The current supported Paho C version is: v1.3.14
 
 ## Configurable Features
 
@@ -28,7 +28,7 @@ The _vendored-ssl_ feature requires the target C compiler as well, but also requ
 
 ### Using SSL/TLS
 
-Starting with Version 0.5.0 we are using the [openssl-sys](https://crates.io/crates/openssl-sys) crate which allows for further modification of the behavior through environment variables, such as specifying the location of the OpenSSL library or linking it statically.
+We use the [openssl-sys](https://crates.io/crates/openssl-sys) crate which allows for modification of the OpenSSL library behavior through environment variables, such as specifying the location of the library or linking it statically.
 
 For more information read the [Rust OpenSSL Docs](https://docs.rs/openssl/latest/openssl), _carefully_.
 
